@@ -65,3 +65,15 @@ func _physics_process(delta):
 			is_jumping = false
 
 	move_and_slide()
+
+func _process(_delta: float) -> void:
+	#check if player pos is in lvl bounds
+	if global_position.x < GameManager.mid_coords.x-GameManager.lvl_size/2 && GameManager.current_level.coords.x > 0:
+		GameManager.switch_level(Vector2i(-1, 0))
+	if global_position.x > GameManager.mid_coords.x+GameManager.lvl_size/2 && GameManager.current_level.coords.x < 2:
+		GameManager.switch_level(Vector2i(1, 0))
+	if global_position.y < GameManager.mid_coords.y-GameManager.lvl_size/2 && GameManager.current_level.coords.y > 0:
+		GameManager.switch_level(Vector2i(0, -1))
+	if global_position.y > GameManager.mid_coords.y+GameManager.lvl_size/2 && GameManager.current_level.coords.y < 2:
+		GameManager.switch_level(Vector2i(0, 1))
+

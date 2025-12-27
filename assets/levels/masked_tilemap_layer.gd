@@ -15,7 +15,6 @@ func switch_mask(mask: Mask) -> void:
 	if active_mask.is_connected("mask_rotated", set_new_masked_tiles):
 		active_mask.disconnect("mask_rotated", set_new_masked_tiles)
 	active_mask = mask
-	active_mask.connect("mask_rotated", set_new_masked_tiles)
 
 func set_new_masked_tiles() -> void:
 	for y in range(-10, 11):
