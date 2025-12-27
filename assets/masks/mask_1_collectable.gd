@@ -5,15 +5,27 @@ var time = 0
 
 @export var texture: CompressedTexture2D = null
 @export var collectible_id: String = ""
+@export var cost: int = 0
 
 func _ready() -> void:
 	$Sprite2D.texture = texture
+	if cost > 0:
+		$Label.text +=  "\noffer " + str(cost) + " Melons"
 
 func pick_up() -> void:
+	if GameManager.melon_count < cost:
+		#error sound
+		return
+	GameManager.melon_count -= cost
+
 	if collectible_id == "Melon":
 		GameManager.melon_count += 1
-	elif collectible_id == "Mask0":
+	elif collectible_id == "mask1":
 		GameManager.allowed_masks[1] = true
+	elif collectible_id == "mask2":
+		GameManager.allowed_masks[2] = true
+	elif collectible_id == "mask3":
+		GameManager.allowed_masks[3] = true
 	queue_free()
 
 func _input(event: InputEvent) -> void:

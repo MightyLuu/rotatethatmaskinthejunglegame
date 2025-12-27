@@ -22,9 +22,9 @@ func increment_melon_count() -> void:
 func _ready() -> void:
 	allowed_masks = [
 		true,
-		true,
-		true,
-		true
+		false,
+		false,
+		false
 	]	
 	masks = [
 		preload("res://assets/masks/mask_0.tscn").instantiate(),
