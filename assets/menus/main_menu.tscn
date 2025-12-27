@@ -1,0 +1,131 @@
+[gd_scene load_steps=5 format=3 uid="uid://cv7q051f4kg0j"]
+
+[ext_resource type="Script" uid="uid://by4wqf1k85wrk" path="res://assets/menus/main_menu.gd" id="1_o8mnx"]
+[ext_resource type="Texture2D" uid="uid://sx1qgmnq245q" path="res://assets/menus/tmp_mainmenu.png" id="2_0i0v4"]
+[ext_resource type="Texture2D" uid="uid://dma481jw74gqg" path="res://assets/masks/mask1.png" id="2_cav7f"]
+[ext_resource type="AudioStream" uid="uid://dxymlucoftw41" path="res://assets/Music/65_loop.ogg" id="4_ta3oe"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o8mnx")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Left" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(224, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/Left"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Left/MarginContainer2"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 4
+
+[node name="Menu" type="Button" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Menu
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Volume:"
+
+[node name="Volume" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "42"
+horizontal_alignment = 2
+
+[node name="HSlider" type="HSlider" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+value = 42.0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_0i0v4")
+
+[node name="Right" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(224, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Right"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Right/MarginContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_constants/separation = 4
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_cav7f")
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/Right/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_cav7f")
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/Right/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("2_cav7f")
+stretch_mode = 5
+
+[node name="DemoLevelStart" type="Button" parent="."]
+custom_minimum_size = Vector2(250, 69)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.5
+offset_top = -172.5
+offset_right = 73.5
+offset_bottom = -141.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start Demo World"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ta3oe")
+autoplay = true
+
+[connection signal="value_changed" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="button_up" from="DemoLevelStart" to="." method="_on_demo_level_start_button_up"]

@@ -1,0 +1,60 @@
+extends CharacterBody2D
+class_name Player
+
+const GRAVITY = 1200.0
+const WALK_SPEED = 200
+const JUMP_FORCE = -420.0
+const JUMP_HOLD_FORCE := -690.0
+const JUMP_HOLD_TIME := 0.69
+
+var jump_time := 0.0
+var is_jumping := false
+
+var active_mask: Mask
+var mask_sprite: Sprite2D
+
+func switch_mask(mask: Mask) -> void:
+	active_mask = mask
+	active_mask.connect("start_mask_rotation", rotate_mask)
+
+func rotate_mask(left: bool) -> void:
+	var tween = create_tween()
+	if left:
+		tween.tween_property($Mask, "rotation_degrees", active_mask.rotation_degrees - 90, 0.2)
+	else:
+		tween.tween_property($Mask, "rotation_degrees", active_mask.rotation_degrees + 90, 0.2)
+
+func _ready() -> void:
+	mask_sprite = $Mask
+	scale *= 4
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("jump"):
+		start_jump()
+	if event.is_action_released("jump"):
+		is_jumping = false
+
+func start_jump() -> void:
+	if is_on_floor():
+		velocity.y = JUMP_FORCE
+		jump_time = 0.0
+		is_jumping = true
+
+func _physics_process(delta):
+	if not is_on_floor(): velocity.y += delta * GRAVITY
+
+	if Input.is_action_pressed("move_left"):
+		velocity.x = -WALK_SPEED
+	elif Input.is_action_pressed("move_right"):
+		velocity.x =  WALK_SPEED
+	else:
+		velocity.x = 0
+	
+	if is_jumping:
+		jump_time += delta
+		if jump_time < JUMP_HOLD_TIME and Input.is_action_pressed("jump"):
+			velocity.y += JUMP_HOLD_FORCE * delta
+		else:
+			is_jumping = false
+
+	move_and_slide()
