@@ -1,18 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://bsg311wxi01yy"]
 
-[ext_resource type="Script" uid="uid://2ljlvq4a5mgv" path="res://assets/masks/collectable.gd" id="1_44s02"]
+[ext_resource type="Script" uid="uid://2ljlvq4a5mgv" path="res://assets/masks/mask_1_collectable.gd" id="1_44s02"]
 [ext_resource type="Texture2D" uid="uid://dma481jw74gqg" path="res://assets/masks/mask1.png" id="2_vfe2o"]
 [ext_resource type="Theme" uid="uid://by6jw8pw458ma" path="res://assets/menus/main_theme.tres" id="3_vfe2o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wue4o"]
-size = Vector2(96, 96)
+size = Vector2(50, 44)
 
 [node name="Collectable" type="Node2D"]
-scale = Vector2(0.2, 0.2)
 script = ExtResource("1_44s02")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(3, 3)
 texture = ExtResource("2_vfe2o")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -21,17 +19,14 @@ texture = ExtResource("2_vfe2o")
 shape = SubResource("RectangleShape2D_wue4o")
 
 [node name="Label" type="Label" parent="."]
-visible = false
 z_index = 2290
-offset_left = -132.0
-offset_top = -110.0
-offset_right = -32.0
-offset_bottom = -80.0
+offset_left = -22.0
+offset_top = -72.0
+offset_right = -4.0
+offset_bottom = -49.0
 scale = Vector2(2.6770403, 2.6770403)
-size_flags_horizontal = 6
-size_flags_vertical = 6
+size_flags_horizontal = 0
 theme = ExtResource("3_vfe2o")
-theme_override_font_sizes/font_size = 16
 text = "[F]"
 horizontal_alignment = 1
 vertical_alignment = 1

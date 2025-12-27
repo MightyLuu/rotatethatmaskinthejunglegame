@@ -3,13 +3,11 @@ extends TileMapLayer
 class_name MaskedTileMapLayer
 
 var active_mask: Mask
-var melon : Node2D
 var time: float = 0.0
 @export var coords : Vector2i = Vector2i.ZERO
 
 func _ready() -> void:
 	scale = Vector2i(4, 4)
-	melon = $Melon
 	
 func switch_mask(mask: Mask) -> void:
 	active_mask = mask
@@ -38,8 +36,3 @@ func set_new_masked_tiles() -> void:
 			else:
 				atlas_coords.y = 1
 				self.set_cell(level_coords, 0, atlas_coords)
-				
-	
-func _process(delta: float) -> void:
-	time += delta
-	melon.global_position.y += sin(time*5) * 0.1

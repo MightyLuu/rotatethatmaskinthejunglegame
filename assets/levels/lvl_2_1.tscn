@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=4 uid="uid://c2lstr5lkjkko"]
+[gd_scene load_steps=5 format=4 uid="uid://c2lstr5lkjkko"]
 
 [ext_resource type="TileSet" uid="uid://bkfsabp5yaiot" path="res://assets/levels/tiles.tres" id="1_u8t35"]
 [ext_resource type="Script" uid="uid://cgswkaxkohylp" path="res://assets/levels/masked_tilemap_layer.gd" id="2_b7j7q"]
+[ext_resource type="PackedScene" uid="uid://bsg311wxi01yy" path="res://assets/masks/collectable.tscn" id="3_b7j7q"]
 [ext_resource type="Texture2D" uid="uid://xwac32kvh0b1" path="res://assets/levels/Melon.png" id="3_jls10"]
 
 [node name="lvl2-1" type="TileMapLayer"]
@@ -11,6 +12,7 @@ script = ExtResource("2_b7j7q")
 coords = Vector2i(2, 1)
 metadata/_custom_type_script = "uid://cgswkaxkohylp"
 
-[node name="Melon" type="Sprite2D" parent="."]
-position = Vector2(-52, -4)
+[node name="Collectable" parent="." instance=ExtResource("3_b7j7q")]
+position = Vector2(-51.999996, -3.9999998)
 texture = ExtResource("3_jls10")
+collectible_id = "melon"

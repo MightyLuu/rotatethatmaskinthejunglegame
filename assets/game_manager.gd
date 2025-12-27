@@ -14,8 +14,8 @@ var ui : Control
 
 var melon_count: int = 0
 
-func increment_melon_count() -> void:
-	melon_count += 1
+func update_melon_count(diff: int) -> void:
+	melon_count += diff
 	var melon_count_label = ui.get_node("HBoxContainer/Right/VBoxContainer/VBoxContainer/MelonCount")
 	melon_count_label.text = "x %s" % melon_count
 

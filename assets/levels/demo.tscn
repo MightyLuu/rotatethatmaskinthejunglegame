@@ -10,14 +10,7 @@ tile_map_data = PackedByteArray("AAD5/wYAAAAAAAAAAAD6/wYAAAAAAAAAAAD7/wYAAAAAAAA
 tile_set = ExtResource("1_m10if")
 script = ExtResource("3_m10if")
 
-[node name="Spawn" type="Node2D" parent="."]
-position = Vector2(-69, 64)
-
-[node name="Melon" type="Sprite2D" parent="."]
-position = Vector2(-47, -67)
-texture = ExtResource("3_ct103")
-
-[node name="Collectable" parent="." instance=ExtResource("4_nl2fq")]
+[node name="CollectableDemo" parent="." instance=ExtResource("4_nl2fq")]
 position = Vector2(-47, -66)
 scale = Vector2(0.36000216, 0.36000216)
 texture = ExtResource("3_ct103")

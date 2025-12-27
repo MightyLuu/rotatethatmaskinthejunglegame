@@ -3,7 +3,7 @@ class_name Player
 
 const GRAVITY = 1200.0
 const WALK_SPEED = 200
-const JUMP_FORCE = -420.0
+const JUMP_FORCE = -320.0
 const JUMP_HOLD_FORCE := -690.0
 const JUMP_HOLD_TIME := 0.69
 const MAX_FALL_SPEED := 600
