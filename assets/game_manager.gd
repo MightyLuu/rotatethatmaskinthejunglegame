@@ -10,6 +10,7 @@ var game_scene: Node2D
 var world_map: Node2D
 var lvl_size: int = 704-32
 var mid_coords: Vector2i
+var ui : Control
 
 var melon_count: int = 0
 
@@ -17,9 +18,9 @@ var melon_count: int = 0
 func _ready() -> void:
 	allowed_masks = [
 		true,
-		false,
-		false,
-		false
+		true,
+		true,
+		true
 	]	
 	masks = [
 		preload("res://assets/masks/mask_0.tscn").instantiate(),
@@ -51,13 +52,14 @@ func _process(_delta: float) -> void:
 
 func init_game() -> void:
 	game_scene = get_tree().get_nodes_in_group("game_scene")[0]
+	ui = game_scene.get_node("CanvasLayer/MainMenu")
 	world_map = game_scene.get_node("WorldMap")
-	current_level = levels[0]
+	current_level = levels[2]
 	current_level.active_mask = masks[current_mask_idx]
 	current_level.switch_mask(current_level.active_mask)
 	current_level.set_new_masked_tiles()
 	player.switch_mask(current_level.active_mask)
-	player.position = Vector2(400, 300)
+	player.position = Vector2(400, 400)
 	mid_coords = game_scene.get_viewport_rect().size / 2
 	current_level.position = mid_coords
 	game_scene.add_child(player)
@@ -66,7 +68,7 @@ func init_game() -> void:
 	highlight_selected_mask()
 	for level in levels:
 		if level != current_level:
-			level.position = game_scene.get_viewport_rect().size / 2 + Vector2(level.coords.x, level.coords.y) * lvl_size
+			level.position = game_scene.get_viewport_rect().size / 2 + Vector2(level.coords.x, level.coords.y-2) * lvl_size
 			level.visible = false
 			world_map.add_child(level)
 
@@ -86,8 +88,7 @@ func switch_mask(up: bool) -> void:
 		switch_mask(up)
 		
 func highlight_selected_mask() -> void:
-	var main_menu = game_scene.get_node("CanvasLayer/MainMenu")
-	var masks_container = main_menu.get_node("HBoxContainer/Right/MarginContainer/VBoxContainer")
+	var masks_container = ui.get_node("HBoxContainer/Right/MarginContainer/VBoxContainer")
 	var selected_mask = masks_container.get_child(current_mask_idx)
 	
 	for m in masks_container.get_children():

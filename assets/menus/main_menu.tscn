@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cv7q051f4kg0j"]
+[gd_scene load_steps=18 format=3 uid="uid://cv7q051f4kg0j"]
 
 [ext_resource type="Script" uid="uid://by4wqf1k85wrk" path="res://assets/menus/main_menu.gd" id="1_o8mnx"]
 [ext_resource type="Theme" uid="uid://by6jw8pw458ma" path="res://assets/menus/main_theme.tres" id="1_x2l61"]
@@ -13,11 +13,18 @@
 
 [sub_resource type="Theme" id="Theme_shqof"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shqof"]
+bg_color = Color(0, 0, 0, 0.5882353)
+
 [sub_resource type="Theme" id="Theme_b06lc"]
 
 [sub_resource type="Theme" id="Theme_30wg0"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b06lc"]
+bg_color = Color(0, 0, 0, 0.5882353)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oaiin"]
+bg_color = Color(0.40392157, 0.19215687, 0.105882354, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -25,6 +32,7 @@ border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2l61"]
+bg_color = Color(0.40392157, 0.19215687, 0.105882354, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -32,6 +40,7 @@ border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x407y"]
+bg_color = Color(0.40308362, 0.19047898, 0.10516886, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -47,6 +56,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_x2l61")
 script = ExtResource("1_o8mnx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -64,6 +84,7 @@ custom_minimum_size = Vector2(224, 0)
 layout_mode = 2
 size_flags_horizontal = 2
 theme = SubResource("Theme_shqof")
+theme_override_styles/panel = SubResource("StyleBoxFlat_shqof")
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/Left"]
 layout_mode = 2
@@ -168,6 +189,7 @@ texture = ExtResource("2_0i0v4")
 custom_minimum_size = Vector2(224, 0)
 layout_mode = 2
 theme = SubResource("Theme_30wg0")
+theme_override_styles/panel = SubResource("StyleBoxFlat_b06lc")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Right"]
 layout_mode = 2

@@ -1,6 +1,7 @@
 extends Node2D
 
 var active = false
+var time = 0
 
 @export var texture: CompressedTexture2D = null
 @export var collectible_id: String = ""
@@ -28,3 +29,7 @@ func _on_area_2d_body_exited(_body: Node2D) -> void:
 	active = false
 	$Label.visible = false
 	pass # Replace with function body.
+
+func _process(delta: float) -> void:
+	time += delta
+	global_position.y += sin(time*5) * 0.1

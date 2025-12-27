@@ -27,4 +27,3 @@ func _on_h_slider_value_changed(value: float) -> void:
 	volume_label.text = str(int(value))
 	if value == 0:
 		music.volume_db = -80
-		

@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://by6jw8pw458ma" path="res://assets/menus/main_theme.tres" id="3_vfe2o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wue4o"]
-size = Vector2(89, 44)
+size = Vector2(50, 44)
 
 [node name="Collectable" type="Node2D"]
 script = ExtResource("1_44s02")
@@ -16,18 +16,20 @@ texture = ExtResource("2_vfe2o")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, -12)
 shape = SubResource("RectangleShape2D_wue4o")
 
 [node name="Label" type="Label" parent="."]
 z_index = 2290
-offset_left = -184.0
-offset_top = -53.000004
-offset_right = -3.0
-offset_bottom = -30.000004
+offset_left = -22.0
+offset_top = -72.0
+offset_right = -4.0
+offset_bottom = -49.0
 scale = Vector2(2.6770403, 2.6770403)
+size_flags_horizontal = 0
 theme = ExtResource("3_vfe2o")
-text = "Press F to pick up mask"
+text = "[F]"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
