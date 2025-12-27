@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cv7q051f4kg0j"]
+[gd_scene load_steps=21 format=3 uid="uid://cv7q051f4kg0j"]
 
 [ext_resource type="Script" uid="uid://by4wqf1k85wrk" path="res://assets/menus/main_menu.gd" id="1_o8mnx"]
 [ext_resource type="Theme" uid="uid://by6jw8pw458ma" path="res://assets/menus/main_theme.tres" id="1_x2l61"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dxymlucoftw41" path="res://assets/Music/65_loop.ogg" id="4_ta3oe"]
 [ext_resource type="Texture2D" uid="uid://dgft7wwlo3dgl" path="res://assets/masks/mask2.png" id="4_x407y"]
 [ext_resource type="Texture2D" uid="uid://dgvgyuklr8t1q" path="res://assets/masks/mask3.png" id="5_oaiin"]
+[ext_resource type="Texture2D" uid="uid://xwac32kvh0b1" path="res://assets/levels/Melon.png" id="8_30wg0"]
 [ext_resource type="Texture2D" uid="uid://bg883gwo0xto6" path="res://assets/menus/button.png" id="8_shqof"]
 [ext_resource type="Texture2D" uid="uid://d1kug5ooydk7y" path="res://assets/menus/button_hov.png" id="9_b06lc"]
 
@@ -205,7 +206,10 @@ layout_mode = 2
 theme = SubResource("Theme_30wg0")
 theme_override_styles/panel = SubResource("StyleBoxFlat_b06lc")
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Right"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Right"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Right/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_30wg0")
 theme_override_constants/margin_left = 10
@@ -213,7 +217,7 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Right/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Right/VBoxContainer/MarginContainer"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -221,14 +225,14 @@ size_flags_vertical = 0
 theme = SubResource("Theme_30wg0")
 theme_override_constants/separation = 16
 
-[node name="Mask0UI" type="PanelContainer" parent="HBoxContainer/Right/MarginContainer/VBoxContainer"]
+[node name="Mask0UI" type="PanelContainer" parent="HBoxContainer/Right/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = SubResource("Theme_30wg0")
 theme_override_styles/panel = SubResource("StyleBoxFlat_oaiin")
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/MarginContainer/VBoxContainer/Mask0UI"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/VBoxContainer/MarginContainer/VBoxContainer/Mask0UI"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_vertical = 3
@@ -236,14 +240,14 @@ theme = SubResource("Theme_30wg0")
 texture = ExtResource("3_oaiin")
 stretch_mode = 5
 
-[node name="Mask1UI" type="PanelContainer" parent="HBoxContainer/Right/MarginContainer/VBoxContainer"]
+[node name="Mask1UI" type="PanelContainer" parent="HBoxContainer/Right/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = SubResource("Theme_30wg0")
 theme_override_styles/panel = SubResource("StyleBoxFlat_oaiin")
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/MarginContainer/VBoxContainer/Mask1UI"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/VBoxContainer/MarginContainer/VBoxContainer/Mask1UI"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_vertical = 3
@@ -251,12 +255,12 @@ theme = SubResource("Theme_30wg0")
 texture = ExtResource("2_cav7f")
 stretch_mode = 5
 
-[node name="Mask2UI" type="PanelContainer" parent="HBoxContainer/Right/MarginContainer/VBoxContainer"]
+[node name="Mask2UI" type="PanelContainer" parent="HBoxContainer/Right/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_30wg0")
 theme_override_styles/panel = SubResource("StyleBoxFlat_x2l61")
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/MarginContainer/VBoxContainer/Mask2UI"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/VBoxContainer/MarginContainer/VBoxContainer/Mask2UI"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_vertical = 3
@@ -264,20 +268,35 @@ theme = SubResource("Theme_30wg0")
 texture = ExtResource("4_x407y")
 stretch_mode = 5
 
-[node name="Mask3UI" type="PanelContainer" parent="HBoxContainer/Right/MarginContainer/VBoxContainer"]
+[node name="Mask3UI" type="PanelContainer" parent="HBoxContainer/Right/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = SubResource("Theme_30wg0")
 theme_override_styles/panel = SubResource("StyleBoxFlat_x407y")
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/MarginContainer/VBoxContainer/Mask3UI"]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/VBoxContainer/MarginContainer/VBoxContainer/Mask3UI"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_30wg0")
 texture = ExtResource("5_oaiin")
 stretch_mode = 5
+
+[node name="VBoxContainer" type="HBoxContainer" parent="HBoxContainer/Right/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("8_30wg0")
+expand_mode = 2
+
+[node name="MelonCount" type="Label" parent="HBoxContainer/Right/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "x 0"
 
 [node name="DemoLevelStart" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(250, 69)

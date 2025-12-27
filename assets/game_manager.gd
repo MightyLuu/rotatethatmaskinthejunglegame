@@ -14,6 +14,10 @@ var ui : Control
 
 var melon_count: int = 0
 
+func increment_melon_count() -> void:
+	melon_count += 1
+	var melon_count_label = ui.get_node("HBoxContainer/Right/VBoxContainer/VBoxContainer/MelonCount")
+	melon_count_label.text = "x %s" % melon_count
 
 func _ready() -> void:
 	allowed_masks = [
@@ -88,7 +92,7 @@ func switch_mask(up: bool) -> void:
 		switch_mask(up)
 		
 func highlight_selected_mask() -> void:
-	var masks_container = ui.get_node("HBoxContainer/Right/MarginContainer/VBoxContainer")
+	var masks_container = ui.get_node("HBoxContainer/Right/VBoxContainer/MarginContainer/VBoxContainer")
 	var selected_mask = masks_container.get_child(current_mask_idx)
 	
 	for m in masks_container.get_children():

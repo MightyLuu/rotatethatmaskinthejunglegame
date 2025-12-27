@@ -3,7 +3,7 @@ extends TileMapLayer
 class_name MaskedTileMapLayer
 
 var active_mask: Mask
-var melon : Sprite2D
+var melon : Node2D
 var time: float = 0.0
 @export var coords : Vector2i = Vector2i.ZERO
 
