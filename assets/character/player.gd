@@ -10,12 +10,11 @@ const MAX_FALL_SPEED := 600
 
 var jump_time := 0.0
 var is_jumping := false
-
 var active_mask: Mask
-var mask_sprite: Sprite2D
 
 func switch_mask(mask: Mask) -> void:
 	active_mask = mask
+	$Mask.texture = mask.texture
 	active_mask.connect("start_mask_rotation", rotate_mask)
 
 func rotate_mask(left: bool) -> void:
@@ -26,14 +25,17 @@ func rotate_mask(left: bool) -> void:
 		tween.tween_property($Mask, "rotation_degrees", active_mask.rotation_degrees + 90, 0.2)
 
 func _ready() -> void:
-	mask_sprite = $Mask
 	scale *= 4
-
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		start_jump()
 	if event.is_action_released("jump"):
 		is_jumping = false
+	if event.is_action_released("switch_mask_up"):
+		GameManager.switch_mask(true)
+	if event.is_action_released("switch_mask_down"):
+		GameManager.switch_mask(false)
+		
 
 func start_jump() -> void:
 	if is_on_floor():
@@ -43,7 +45,7 @@ func start_jump() -> void:
 
 func _physics_process(delta):
 	GameManager.write_debug_player_message("Position: \n%s\nVelocity: \n%s\nJumping: \n%s" % [position, velocity, is_jumping])
-	GameManager.write_debug_mask_message("Rotation Degrees: \n%s" % [active_mask.rotation_degrees])
+	GameManager.write_debug_mask_message("Rotation Degrees: \n%s\nCurrent Mask Index: \n%s" % [active_mask.rotation_degrees, GameManager.current_mask_idx])
 	if not is_on_floor(): velocity.y += delta * GRAVITY
 
 	if Input.is_action_pressed("move_left"):

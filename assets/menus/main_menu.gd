@@ -16,7 +16,7 @@ func _input(event: InputEvent) -> void:
 		$HBoxContainer/Left/MarginContainer2/VBoxContainer/DebugContent.visible = debug_mode
 
 func _on_demo_level_start_button_up() -> void:
-	GameManager.load_level(0)
+	GameManager.init_game()
 	$DemoLevelStart.visible = false
 	$HBoxContainer/TextureRect.visible = false
 
