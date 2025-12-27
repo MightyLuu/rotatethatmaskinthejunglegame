@@ -11,14 +11,21 @@ var world_map: Node2D
 var lvl_size: int = 704-32
 var mid_coords: Vector2i
 
+var melon_count: int = 0
+
+
 func _ready() -> void:
 	allowed_masks = [
 		true,
-		true
+		false,
+		false,
+		false
 	]	
 	masks = [
+		preload("res://assets/masks/mask_0.tscn").instantiate(),
 		preload("res://assets/masks/mask_1.tscn").instantiate(),
-		preload("res://assets/masks/mask_2.tscn").instantiate()
+		preload("res://assets/masks/mask_2.tscn").instantiate(),
+		preload("res://assets/masks/mask_3.tscn").instantiate()
 	]
 	levels = [
 		preload("res://assets/levels/demo.tscn").instantiate(),
@@ -37,21 +44,10 @@ func _ready() -> void:
 	# Loading all mask textures because the timing is off when doing it in the mask _ready func
 	for m in masks:
 		m.texture = load(m.texturePath)
-    
+	
 func _process(_delta: float) -> void:
 	if current_level:
 		write_debug_world_message("Current Level: \n%s" % [current_level.coords])
-
-func write_debug_player_message(message: String) -> void:
-	var debug_area = get_tree().get_first_node_in_group("debug_area").get_node("DebugPlayer")
-	debug_area.text = message
-
-func write_debug_world_message(message: String) -> void:
-	var debug_area = get_tree().get_first_node_in_group("debug_area").get_node("DebugWorld")
-	debug_area.text = message
-	
-func _process(_delta: float) -> void:
-	write_debug_world_message("Current Level: \n%s" % [current_level])
 
 func init_game() -> void:
 	game_scene = get_tree().get_nodes_in_group("game_scene")[0]
@@ -67,6 +63,7 @@ func init_game() -> void:
 	game_scene.add_child(player)
 	world_map.add_child(current_level)
 	game_scene.add_child(current_level.active_mask)
+	highlight_selected_mask()
 	for level in levels:
 		if level != current_level:
 			level.position = game_scene.get_viewport_rect().size / 2 + Vector2(level.coords.x, level.coords.y) * lvl_size
@@ -83,6 +80,21 @@ func switch_mask(up: bool) -> void:
 		player.switch_mask(current_level.active_mask)
 		game_scene.add_child(current_level.active_mask)
 		current_level.set_new_masked_tiles()
+		highlight_selected_mask()
+	else:
+		current_mask_idx = (current_mask_idx + 1 if up else current_mask_idx - 1)
+		switch_mask(up)
+		
+func highlight_selected_mask() -> void:
+	var main_menu = game_scene.get_node("CanvasLayer/MainMenu")
+	var masks_container = main_menu.get_node("HBoxContainer/Right/MarginContainer/VBoxContainer")
+	var selected_mask = masks_container.get_child(current_mask_idx)
+	
+	for m in masks_container.get_children():
+		m.self_modulate.a = 0
+		
+	selected_mask.self_modulate.a = 1
+	
 	
 func switch_level(direction: Vector2i) -> void:
 	print_debug("switching level" + str(direction))
@@ -108,6 +120,11 @@ func switch_level(direction: Vector2i) -> void:
 	current_level = _new_level
 	player.set_physics_process(true)
 	player.set_process(true)
+	current_level.set_new_masked_tiles()
+	
+func write_debug_mask_message(message: String) -> void:
+	var debug_area = get_tree().get_first_node_in_group("debug_area").get_node("DebugMask")
+	debug_area.text = message
 	
 func write_debug_player_message(message: String) -> void:
 	var debug_area = get_tree().get_first_node_in_group("debug_area").get_node("DebugPlayer")
@@ -115,10 +132,6 @@ func write_debug_player_message(message: String) -> void:
 
 func write_debug_world_message(message: String) -> void:
 	var debug_area = get_tree().get_first_node_in_group("debug_area").get_node("DebugWorld")
-	debug_area.text = message
-	
-func write_debug_mask_message(message: String) -> void:
-	var debug_area = get_tree().get_first_node_in_group("debug_area").get_node("DebugMask")
 	debug_area.text = message
 
 

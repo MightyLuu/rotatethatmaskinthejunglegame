@@ -1,9 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv7q051f4kg0j"]
+[gd_scene load_steps=11 format=3 uid="uid://cv7q051f4kg0j"]
 
 [ext_resource type="Script" uid="uid://by4wqf1k85wrk" path="res://assets/menus/main_menu.gd" id="1_o8mnx"]
 [ext_resource type="Texture2D" uid="uid://sx1qgmnq245q" path="res://assets/menus/tmp_mainmenu.png" id="2_0i0v4"]
 [ext_resource type="Texture2D" uid="uid://dma481jw74gqg" path="res://assets/masks/mask1.png" id="2_cav7f"]
+[ext_resource type="Texture2D" uid="uid://cxxe4vkxgfa7d" path="res://assets/masks/mask0.png" id="3_oaiin"]
 [ext_resource type="AudioStream" uid="uid://dxymlucoftw41" path="res://assets/Music/65_loop.ogg" id="4_ta3oe"]
+[ext_resource type="Texture2D" uid="uid://dgft7wwlo3dgl" path="res://assets/masks/mask2.png" id="4_x407y"]
+[ext_resource type="Texture2D" uid="uid://dgvgyuklr8t1q" path="res://assets/masks/mask3.png" id="5_oaiin"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oaiin"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2l61"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x407y"]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -130,27 +154,56 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_constants/separation = 4
+theme_override_constants/separation = 16
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/MarginContainer/VBoxContainer"]
+[node name="Mask0UI" type="PanelContainer" parent="HBoxContainer/Right/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_oaiin")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/MarginContainer/VBoxContainer/Mask0UI"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_oaiin")
+stretch_mode = 5
+
+[node name="Mask1UI" type="PanelContainer" parent="HBoxContainer/Right/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_oaiin")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/MarginContainer/VBoxContainer/Mask1UI"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("2_cav7f")
 stretch_mode = 5
 
-[node name="TextureRect2" type="TextureRect" parent="HBoxContainer/Right/MarginContainer/VBoxContainer"]
+[node name="Mask2UI" type="PanelContainer" parent="HBoxContainer/Right/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_x2l61")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/MarginContainer/VBoxContainer/Mask2UI"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("2_cav7f")
+texture = ExtResource("4_x407y")
 stretch_mode = 5
 
-[node name="TextureRect3" type="TextureRect" parent="HBoxContainer/Right/MarginContainer/VBoxContainer"]
+[node name="Mask3UI" type="PanelContainer" parent="HBoxContainer/Right/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_x407y")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/MarginContainer/VBoxContainer/Mask3UI"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("2_cav7f")
+texture = ExtResource("5_oaiin")
 stretch_mode = 5
 
 [node name="DemoLevelStart" type="Button" parent="."]

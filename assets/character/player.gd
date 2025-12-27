@@ -11,10 +11,13 @@ const MAX_FALL_SPEED := 600
 var jump_time := 0.0
 var is_jumping := false
 var active_mask: Mask
+var is_rotating := false
 
 func switch_mask(mask: Mask) -> void:
 	active_mask = mask
 	$Mask.texture = mask.texture
+	if active_mask.is_connected("start_mask_rotation", rotate_mask):
+		active_mask.disconnect("start_mask_rotation", rotate_mask)
 	active_mask.connect("start_mask_rotation", rotate_mask)
 
 func rotate_mask(left: bool) -> void:
@@ -23,17 +26,19 @@ func rotate_mask(left: bool) -> void:
 		tween.tween_property($Mask, "rotation_degrees", active_mask.rotation_degrees - 90, 0.2)
 	else:
 		tween.tween_property($Mask, "rotation_degrees", active_mask.rotation_degrees + 90, 0.2)
+	await tween.finished
 
 func _ready() -> void:
-	scale *= 4
+	scale = Vector2i(4, 4)
+	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		start_jump()
 	if event.is_action_released("jump"):
 		is_jumping = false
-	if event.is_action_released("switch_mask_up"):
-		GameManager.switch_mask(true)
 	if event.is_action_released("switch_mask_down"):
+		GameManager.switch_mask(true)
+	if event.is_action_released("switch_mask_up"):
 		GameManager.switch_mask(false)
 		
 
@@ -76,4 +81,3 @@ func _process(_delta: float) -> void:
 		GameManager.switch_level(Vector2i(0, -1))
 	if global_position.y > GameManager.mid_coords.y+GameManager.lvl_size/2 && GameManager.current_level.coords.y < 2:
 		GameManager.switch_level(Vector2i(0, 1))
-

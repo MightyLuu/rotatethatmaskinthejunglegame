@@ -3,7 +3,9 @@ class_name Mask
 
 @export var texturePath: String
 
+var texture: CompressedTexture2D
 var rotating = false
+
 signal start_mask_rotation
 
 func _ready() -> void:

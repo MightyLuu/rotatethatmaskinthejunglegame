@@ -12,11 +12,11 @@ func _ready() -> void:
 	melon = $Melon
 	
 func switch_mask(mask: Mask) -> void:
-	if active_mask.is_connected("mask_rotated", set_new_masked_tiles):
-		active_mask.disconnect("mask_rotated", set_new_masked_tiles)
 	active_mask = mask
 
 func set_new_masked_tiles() -> void:
+	if active_mask.rotating:
+		return
 	for y in range(-10, 11):
 		for x in range(-10, 11):
 			var level_coords = Vector2i(x, y)
