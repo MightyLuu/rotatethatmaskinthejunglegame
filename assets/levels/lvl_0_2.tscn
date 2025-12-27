@@ -13,12 +13,14 @@ script = ExtResource("2_5t6kf")
 coords = Vector2i(0, 2)
 metadata/_custom_type_script = "uid://cgswkaxkohylp"
 
-[node name="Melon" type="Sprite2D" parent="."]
-position = Vector2(57, -36)
-texture = ExtResource("3_p0ix3")
-
 [node name="Collectible" parent="." instance=ExtResource("4_p0ix3")]
 position = Vector2(-15.000001, 41)
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("5_udxhd")
 collectible_id = "Mask0"
+
+[node name="Melon" parent="." instance=ExtResource("4_p0ix3")]
+position = Vector2(55.000004, -32)
+scale = Vector2(0.36000216, 0.36000216)
+texture = ExtResource("3_p0ix3")
+collectible_id = "Melon"
