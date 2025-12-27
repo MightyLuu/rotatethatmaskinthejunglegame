@@ -6,6 +6,7 @@ const WALK_SPEED = 200
 const JUMP_FORCE = -420.0
 const JUMP_HOLD_FORCE := -690.0
 const JUMP_HOLD_TIME := 0.69
+const MAX_FALL_SPEED := 600
 
 var jump_time := 0.0
 var is_jumping := false
@@ -51,6 +52,8 @@ func _physics_process(delta):
 		velocity.x =  WALK_SPEED
 	else:
 		velocity.x = 0
+	
+	velocity.y = min(velocity.y, MAX_FALL_SPEED)
 	
 	if is_jumping:
 		jump_time += delta
