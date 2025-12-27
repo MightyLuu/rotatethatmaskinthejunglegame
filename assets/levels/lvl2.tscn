@@ -18,5 +18,3 @@ texture = ExtResource("3_c7owv")
 
 [node name="lvl1" parent="." instance=ExtResource("4_miwy6")]
 position = Vector2(-84, -52)
-monitoring = false
-monitorable = false

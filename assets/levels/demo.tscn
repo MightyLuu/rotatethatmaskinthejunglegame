@@ -18,5 +18,5 @@ position = Vector2(-47, -67)
 texture = ExtResource("3_ct103")
 
 [node name="lvl2" parent="." instance=ExtResource("4_ct103")]
-position = Vector2(88, -52)
+position = Vector2(84, -52)
 lvlCoords = Vector2i(1, 0)

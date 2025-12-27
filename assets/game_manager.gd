@@ -17,6 +17,21 @@ func _ready() -> void:
 		preload("res://assets/levels/lvl2.tscn").instantiate()
 	]
 	player = preload("res://assets/character/character.tscn").instantiate()
+	
+func _process(delta: float) -> void:
+	write_debug_world_message("Current Level: \n%s" % [current_level])
+
+func write_debug_player_message(message: String) -> void:
+	var debug_area = get_tree().get_first_node_in_group("debug_area").get_node("DebugPlayer")
+	debug_area.text = message
+
+func write_debug_world_message(message: String) -> void:
+	var debug_area = get_tree().get_first_node_in_group("debug_area").get_node("DebugWorld")
+	debug_area.text = message
+	
+func write_debug_mask_message(message: String) -> void:
+	var debug_area = get_tree().get_first_node_in_group("debug_area").get_node("DebugMask")
+	debug_area.text = message
 
 func load_level(start_level: int) -> void:
 	game_scene = get_tree().get_nodes_in_group("game_scene")[0]

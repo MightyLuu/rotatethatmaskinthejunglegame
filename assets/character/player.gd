@@ -41,6 +41,8 @@ func start_jump() -> void:
 		is_jumping = true
 
 func _physics_process(delta):
+	GameManager.write_debug_player_message("Position: \n%s\nVelocity: \n%s\nJumping: \n%s" % [position, velocity, is_jumping])
+	GameManager.write_debug_mask_message("Rotation Degrees: \n%s" % [active_mask.rotation_degrees])
 	if not is_on_floor(): velocity.y += delta * GRAVITY
 
 	if Input.is_action_pressed("move_left"):

@@ -64,6 +64,52 @@ horizontal_alignment = 2
 layout_mode = 2
 value = 42.0
 
+[node name="DebugContent" type="VBoxContainer" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer" groups=["debug_area"]]
+layout_mode = 2
+
+[node name="DebugLabel" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/DebugContent"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(3.7541986e-06, 0.68174946, 0.6183852, 1)
+text = "Debug Information"
+autowrap_mode = 1
+
+[node name="DebugPlayerLabel" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/DebugContent"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(3.7541986e-06, 0.68174946, 0.6183852, 1)
+text = "Player Information"
+autowrap_mode = 1
+
+[node name="DebugPlayer" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/DebugContent"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+autowrap_mode = 1
+
+[node name="DebugWorldLabel" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/DebugContent"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(3.7541986e-06, 0.68174946, 0.6183852, 1)
+text = "World Information"
+autowrap_mode = 1
+
+[node name="DebugWorld" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/DebugContent"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+autowrap_mode = 1
+
+[node name="DebugMaskLabel2" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/DebugContent"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(3.7541986e-06, 0.68174946, 0.6183852, 1)
+text = "Mask Information"
+autowrap_mode = 1
+
+[node name="DebugMask" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/DebugContent"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+autowrap_mode = 1
+
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("2_0i0v4")
