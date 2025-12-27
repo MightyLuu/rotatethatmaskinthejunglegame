@@ -2,7 +2,6 @@ extends TileMapLayer
 class_name Mask
 
 var rotating = false
-signal mask_rotated
 signal start_mask_rotation
 
 func _ready() -> void:
@@ -32,5 +31,5 @@ func rotate_mask(left: bool) -> void:
 		
 	await tween.finished
 	rotating = false
-	emit_signal("mask_rotated")
+	GameManager.current_level.set_new_masked_tiles()
 	tween.kill()

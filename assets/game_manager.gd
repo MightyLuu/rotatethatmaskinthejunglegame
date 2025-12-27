@@ -7,6 +7,7 @@ var current_level: MaskedTileMapLayer
 var game_scene: Node2D
 var world_map: Node2D
 var lvl_size: int = 704-32
+var mid_coords: Vector2i
 
 func _ready() -> void:
 	masks = [
@@ -14,12 +15,21 @@ func _ready() -> void:
 	]
 	levels = [
 		preload("res://assets/levels/demo.tscn").instantiate(),
-		preload("res://assets/levels/lvl2.tscn").instantiate()
+		preload("res://assets/levels/lvl_0_1.tscn").instantiate(),
+		preload("res://assets/levels/lvl_0_2.tscn").instantiate(),
+		preload("res://assets/levels/lvl_1_0.tscn").instantiate(),
+		preload("res://assets/levels/lvl_1_1.tscn").instantiate(),
+		preload("res://assets/levels/lvl_1_2.tscn").instantiate(),
+		preload("res://assets/levels/lvl_2_0.tscn").instantiate(),
+		preload("res://assets/levels/lvl_2_1.tscn").instantiate(),
+		preload("res://assets/levels/lvl_2_2.tscn").instantiate()
+
 	]
 	player = preload("res://assets/character/character.tscn").instantiate()
 	
-func _process(delta: float) -> void:
-	write_debug_world_message("Current Level: \n%s" % [current_level])
+func _process(_delta: float) -> void:
+	if current_level:
+		write_debug_world_message("Current Level: \n%s" % [current_level.coords])
 
 func write_debug_player_message(message: String) -> void:
 	var debug_area = get_tree().get_first_node_in_group("debug_area").get_node("DebugPlayer")
@@ -42,7 +52,8 @@ func load_level(start_level: int) -> void:
 	current_level.switch_mask(current_level.active_mask)
 	player.switch_mask(current_level.active_mask)
 	player.position = Vector2(400, 300)
-	current_level.position = game_scene.get_viewport_rect().size / 2
+	mid_coords = game_scene.get_viewport_rect().size / 2
+	current_level.position = mid_coords
 	game_scene.add_child(player)
 	world_map.add_child(current_level)
 	game_scene.add_child(current_level.active_mask)
@@ -53,36 +64,27 @@ func load_level(start_level: int) -> void:
 			world_map.add_child(level)
 
 	
-func switch_level(coords: Vector2i) -> void: 
-	var current_coords = current_level.coords
+func switch_level(direction: Vector2i) -> void:
+	print_debug("switching level" + str(direction))
+	player.set_physics_process(false)
+	player.set_process(false) 
 	var _new_level : MaskedTileMapLayer
 	# find direction
-	var offset : Vector2 = Vector2i.ZERO
-	if coords.x > current_coords.x:
-		#right
-		offset.x = -lvl_size
-	elif coords.x < current_coords.x:
-		#left
-		offset.x = lvl_size
-	if coords.y > current_coords.y:
-		#down
-		offset.y = -lvl_size
-	elif coords.y < current_coords.y:
-		#up
-		offset.y = lvl_size
 	for level in levels:
-		if level.coords == coords:
+		if level.coords == current_level.coords + direction:
 			_new_level = level
 			_new_level.visible = true # kann man auch noch tweenen
 			break
 	#move level to center
 	var tween = create_tween()
 	#var player_tween = create_tween()
-	tween.tween_property(world_map, "position", world_map.position + Vector2(offset.x*coords.x, offset.y*coords.y), 0.25)
-	player.position.x += offset.x
+	tween.tween_property(world_map, "position", world_map.position - Vector2(lvl_size*direction.x, lvl_size*direction.y), 0.25)
+	player.position -= Vector2((lvl_size-32)*direction.x, (lvl_size-32)*direction.y)
 	#player_tween.tween_property(player, "position", Vector2(player.position.x + offset.x+64, player.position.y), 0.05) # tween verschieb aus irgend nem grun die map?
 	await tween.finished
+	current_level.visible = false
 	#current_level.visible = false # das auch
+	_new_level.active_mask = current_level.active_mask
 	current_level = _new_level
 	player.set_physics_process(true)
 	player.set_process(true)
