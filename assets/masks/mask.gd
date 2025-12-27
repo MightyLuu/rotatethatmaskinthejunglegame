@@ -1,10 +1,13 @@
 extends TileMapLayer
 class_name Mask
 
+@export var texturePath: String
+
 var rotating = false
 signal start_mask_rotation
 
 func _ready() -> void:
+	#texture = load(texturePath) For some reason the timing here is not correct, so the texture gets loaded in the game manager
 	position = get_viewport_rect().size / 2
 	scale = scale * 4
 	

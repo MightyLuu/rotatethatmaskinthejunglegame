@@ -3,7 +3,6 @@ extends TileMapLayer
 class_name MaskedTileMapLayer
 
 var active_mask: Mask
-var allowed_masks: Array[Mask]
 var melon : Sprite2D
 var time: float = 0.0
 @export var coords : Vector2i = Vector2i.ZERO
@@ -13,6 +12,8 @@ func _ready() -> void:
 	melon = $Melon
 	
 func switch_mask(mask: Mask) -> void:
+	if active_mask.is_connected("mask_rotated", set_new_masked_tiles):
+		active_mask.disconnect("mask_rotated", set_new_masked_tiles)
 	active_mask = mask
 
 func set_new_masked_tiles() -> void:
