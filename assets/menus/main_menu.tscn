@@ -451,6 +451,59 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_2qtot")
 theme_override_styles/hover = SubResource("StyleBoxFlat_jjmdn")
 text = "Play again"
 
+[node name="Credits2" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_667dc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits2"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="RichTextLabel" parent="Credits2/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "It seems you dropped out of the map. What a shame.
+
+You will never become the [color=#FF0000]M[/color][color=#F20C02]e[/color][color=#E51905]l[/color][color=#D82607]o[/color][color=#CC330A]n[/color][color=#BF3F0C]e[/color][color=#B24C0F]n[/color][color=#A55911]m[/color][color=#996614]a[/color][color=#8C7216]s[/color][color=#7F7F19]k[/color][color=#728C1C]e[/color][color=#66991E]n[/color][color=#59A521]m[/color][color=#4CB223]e[/color][color=#3FBF26]i[/color][color=#33CC28]s[/color][color=#26D82B]t[/color][color=#19E52D]e[/color][color=#0CF230]r[/color]!
+
+[color=#FF0000]M[/color][color=#FF0300]U[/color][color=#FF0700]H[/color][color=#FF0A00]A[/color][color=#FF0E00]H[/color][color=#FF1100]A[/color][color=#FF1500]H[/color][color=#FF1800]A[/color][color=#FF1C00]H[/color][color=#FF1F00]A[/color][color=#FF2300]H[/color][color=#FF2600]A[/color][color=#FF2A00]H[/color][color=#FF2D00]A[/color][color=#FF3100]H[/color][color=#FF3400]A[/color][color=#FF3800]H[/color][color=#FF3B00]A[/color][color=#FF3F00]H[/color][color=#FF4200]A[/color][color=#FF4600]H[/color][color=#FF4900]A[/color]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Credits2/VBoxContainer"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "
+
+A Game by
+WhizzCraft [url]https://itch.io/profile/whizzcraft[/url]
+Ecsodikas [url]https://itch.io/profile/ecsodikas[/url]
+
+
+Assets:
+SFX: [url]https://leohpaz.itch.io/rpg-essentials-sfx-free[/url]
+Music: [url]https://madmakingmistery.itch.io/friendly-jungle-tribe[/url]"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Credits2/VBoxContainer"]
+custom_minimum_size = Vector2(100, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_2qtot")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jjmdn")
+text = "Play again"
+
 [connection signal="button_up" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/TextureButton" to="HBoxContainer/Left/MarginContainer2/VBoxContainer/TextureButton" method="_on_button_up"]
 [connection signal="value_changed" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/Settings/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/Settings/VBoxContainerSFX/HSliderSFX" to="." method="_on_h_slider_sfx_value_changed"]
@@ -458,3 +511,4 @@ text = "Play again"
 [connection signal="button_up" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/Settings/Restart" to="." method="_on_restart_button_up"]
 [connection signal="button_up" from="DemoLevelStart" to="." method="_on_demo_level_start_button_up"]
 [connection signal="button_up" from="Credits/VBoxContainer/Button" to="." method="_on_button_button_up"]
+[connection signal="button_up" from="Credits2/VBoxContainer/Button" to="." method="_on_button_button_up"]

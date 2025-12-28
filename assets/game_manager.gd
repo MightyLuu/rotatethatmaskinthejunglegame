@@ -117,6 +117,23 @@ func init_game() -> void:
 			level.visible = false
 			world_map.add_child(level)
 
+func roll_credits_lose() -> void:
+	player.set_physics_process(false)
+	player.set_process(false)
+	game_over = true
+	var credits: PanelContainer = ui.get_node("Credits2")
+	credits.self_modulate.a = 0
+	for child in credits.get_node("VBoxContainer").get_children():
+		child.self_modulate.a = 0
+
+	credits.show()
+	var tween = create_tween()
+	tween.tween_property(credits, "self_modulate:a", 1, 0.4).set_ease(tween.EASE_OUT).set_trans(tween.TRANS_SINE)
+	tween.parallel()
+	for child in credits.get_node("VBoxContainer").get_children():
+		tween.tween_property(child, "self_modulate:a", 1, 1.2).set_ease(tween.EASE_IN).set_trans(tween.TRANS_SINE)
+		tween.parallel()
+
 func roll_credits() -> void:
 	game_over = true
 	if !ui.get_node("AudioStreamPlayer").playing:

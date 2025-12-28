@@ -95,3 +95,5 @@ func _process(_delta: float) -> void:
 		GameManager.switch_level(Vector2i(0, -1))
 	if global_position.y > GameManager.mid_coords.y+GameManager.lvl_size/2 && GameManager.current_level.coords.y < 2:
 		GameManager.switch_level(Vector2i(0, 1))
+	if global_position.y > 1000:
+		GameManager.roll_credits_lose()
