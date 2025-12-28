@@ -12,6 +12,5 @@ script = ExtResource("3_m10if")
 
 [node name="CollectableDemo" parent="." instance=ExtResource("4_nl2fq")]
 position = Vector2(-47, -66)
-scale = Vector2(0.36000216, 0.36000216)
 texture = ExtResource("4_ct103")
-collectible_id = "Melon"
+collectible_id = "melon"
