@@ -25,7 +25,7 @@ func _ready() -> void:
 func _on_demo_level_start_button_up() -> void:
 	GameManager.init_game()
 	$DemoLevelStart.visible = false
-	$HBoxContainer/TextureRect.visible = false
+	$HBoxContainer/TextureRect.self_modulate.a = 0
 	$HBoxContainer/Right/VBoxContainer.visible = true
 	$HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/Restart.visible = true
 

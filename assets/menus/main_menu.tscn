@@ -100,7 +100,7 @@ alignment = 1
 [node name="Left" type="PanelContainer" parent="HBoxContainer"]
 custom_minimum_size = Vector2(224, 0)
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 0
 theme = SubResource("Theme_shqof")
 theme_override_styles/panel = SubResource("StyleBoxFlat_shqof")
 
@@ -249,13 +249,17 @@ theme = SubResource("Theme_30wg0")
 autowrap_mode = 1
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(704, 0)
 layout_mode = 2
 theme = SubResource("Theme_30wg0")
 texture = ExtResource("3_b06lc")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Right" type="PanelContainer" parent="HBoxContainer"]
 custom_minimum_size = Vector2(224, 0)
 layout_mode = 2
+size_flags_horizontal = 8
 theme = SubResource("Theme_30wg0")
 theme_override_styles/panel = SubResource("StyleBoxFlat_b06lc")
 
