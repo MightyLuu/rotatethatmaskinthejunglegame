@@ -8,11 +8,11 @@ var debug_mode : bool = true
 func _ready() -> void:
 	music = $AudioStreamPlayer
 	music.volume_db = -40+start_volume/2
-	volume_label = $HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/Volume
+	volume_label = $HBoxContainer/Left/MarginContainer2/VBoxContainer/Settings/VBoxContainer/HBoxContainer/Volume
 	volume_label.text = str(int(start_volume))
 
 	#set sfx volume
-	volume_label_sfx = $HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainerSFX/HBoxContainer/Volume
+	volume_label_sfx = $HBoxContainer/Left/MarginContainer2/VBoxContainer/Settings/VBoxContainerSFX/HBoxContainer/Volume
 	volume_label_sfx.text = str(int(start_volume))
 	for n in get_tree().get_nodes_in_group("sfx"):
 		n.volume_db = -40+start_volume/2
@@ -27,7 +27,7 @@ func _on_demo_level_start_button_up() -> void:
 	$DemoLevelStart.visible = false
 	$HBoxContainer/TextureRect.self_modulate.a = 0
 	$HBoxContainer/Right/VBoxContainer.visible = true
-	$HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/Restart.visible = true
+	$HBoxContainer/Left/MarginContainer2/VBoxContainer/Settings/Restart.visible = true
 
 
 

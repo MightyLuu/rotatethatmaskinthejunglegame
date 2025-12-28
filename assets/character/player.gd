@@ -53,8 +53,6 @@ func start_jump() -> void:
 		coyote_timer = 0.0
 
 func _physics_process(delta):
-	GameManager.write_debug_player_message("Position: \n%s\nVelocity: \n%s\nJumping: \n%s" % [position, velocity, is_jumping])
-	GameManager.write_debug_mask_message("Rotation Degrees: \n%s\nCurrent Mask Index: \n%s" % [active_mask.rotation_degrees, GameManager.current_mask_idx])
 	if is_on_floor():
 		coyote_timer = COYOTE_TIME
 	else:

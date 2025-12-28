@@ -92,10 +92,6 @@ func preload_assets() -> void:
 func _ready() -> void:
 	preload_assets()
 
-func _process(_delta: float) -> void:
-	if current_level:
-		write_debug_world_message("Current Level: \n%s" % [current_level.coords])
-
 func init_game() -> void:
 	game_over = false
 	game_scene = get_tree().get_nodes_in_group("game_scene")[0]
@@ -206,21 +202,7 @@ func switch_level(direction: Vector2i) -> void:
 	player.set_physics_process(true)
 	player.set_process(true)
 	current_level.set_new_masked_tiles()
-	
-func write_debug_mask_message(message: String) -> void:
-	var debug_area = get_tree().get_first_node_in_group("debug_area").get_node("DebugMask")
-	debug_area.text = message
-	
-func write_debug_player_message(message: String) -> void:
-	var debug_area = get_tree().get_first_node_in_group("debug_area").get_node("DebugPlayer")
-	debug_area.text = message
-
-func write_debug_world_message(message: String) -> void:
-	var debug_area = get_tree().get_first_node_in_group("debug_area").get_node("DebugWorld")
-	debug_area.text = message
-
-
-	
+		
 func playSfx(sfxName: String) -> void:
 	var sfx : AudioStreamPlayer = ui.get_node(sfxName)
 	#duplicate sfx
