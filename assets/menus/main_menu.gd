@@ -63,7 +63,7 @@ func reset() -> void:
 		await n.tree_exited
 	var nodes = get_tree().root.get_node("GameScene").get_children()
 	for n in nodes:
-		if n.name == "CanvasLayer" || n.name == "WorldMap":
+		if n.name == "CanvasLayer" || n.name == "WorldMap" || n.name == "ShaderLayer":
 			continue
 		n.queue_free()
 		await n.tree_exited

@@ -43,9 +43,10 @@ func rotate_mask(left: bool) -> void:
 	tween.kill()
 
 func showMaskOutline(duration: float) -> void:
-	var spriteTeen = create_tween()
-	spriteTeen.tween_method(set_shader_value, 0.0, 0.6, duration);
-	spriteTeen.tween_method(set_shader_value, 0.6, 0.0, duration*5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD);
+	GameManager.shaderRect.tweenAberration(duration/2)
+	var spriteTween = create_tween()
+	spriteTween.tween_method(set_shader_value, 0.0, 0.6, duration);
+	spriteTween.tween_method(set_shader_value, 0.6, 0.0, duration*5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD);
 
 func set_shader_value(value: float):
 	$Sprite2D.material.set_shader_parameter("outline_color", Color(1, 1, 1, value));
