@@ -73,4 +73,5 @@ func reset() -> void:
 	GameManager.update_melon_count(0)
 	if !get_node("AudioStreamPlayer").playing:
 		get_node("AudioStreamPlayer").play()
+	GameManager.current_mask_idx = 0
 	GameManager.init_game()

@@ -224,7 +224,8 @@ func playSfx(sfxName: String) -> void:
 	sfx_dup.pitch_scale += rand_pitch_offi
 	if sfxName == "spawnMask" && sfx.volume_db > -80:
 		sfx_dup.volume_db = min(sfx.volume_db + 12, 24)
-
+	if sfxName == "switchMask" && sfx.volume_db > -80:
+		sfx_dup.volume_db = min(sfx.volume_db + 8, 24)
 	sfx_dup.play()
 	await sfx_dup.finished
 	sfx_dup.queue_free()
