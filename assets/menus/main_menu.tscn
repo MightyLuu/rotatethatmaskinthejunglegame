@@ -182,8 +182,9 @@ value = 42.0
 
 [node name="CheckButton" type="CheckButton" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 button_pressed = true
-text = "Shader and Shake"
+text = "Cool Mode"
 
 [node name="Restart" type="Button" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer"]
 visible = false
