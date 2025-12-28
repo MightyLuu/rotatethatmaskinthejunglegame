@@ -23,3 +23,5 @@ tile_set = SubResource("TileSet_i2qxs")
 script = ExtResource("2_00xay")
 texturePath = "res://assets/masks/mask4.png"
 generate_mask_tiles = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

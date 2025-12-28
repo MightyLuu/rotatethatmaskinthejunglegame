@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dmpoyi7xt6es7"]
+
+[ext_resource type="Shader" uid="uid://b66ssiaugdkmy" path="res://assets/masks/outline.gdshader" id="1_jwmne"]
+
+[resource]
+shader = ExtResource("1_jwmne")
+shader_parameter/outline_color = Color(0.72156864, 0.72156864, 0.72156864, 0)
+shader_parameter/thickness = 0.10000000149012
+shader_parameter/inner_alpha = 0.0
+shader_parameter/outa_alpha = 0.5

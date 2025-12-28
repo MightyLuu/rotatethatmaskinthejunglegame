@@ -13,6 +13,8 @@ func _ready() -> void:
 	position = get_viewport_rect().size / 2
 	scale = scale * 4
 	load_texture_to_tiles()
+	var sprite : Sprite2D = $Sprite2D	
+	sprite.texture = texture
 	
 func _input(event):
 	if event.is_action_pressed("rotate_mask_right"):
@@ -23,8 +25,8 @@ func _input(event):
 
 func rotate_mask(left: bool) -> void:
 	var tween = create_tween()
+	showMaskOutline(0.2)
 	emit_signal("start_mask_rotation", left)
-	
 	if left and not rotating:
 		rotating = true
 		tween.tween_property(self, "rotation_degrees", rotation_degrees - 90, 0.2)
@@ -40,6 +42,14 @@ func rotate_mask(left: bool) -> void:
 	GameManager.current_level.set_new_masked_tiles()
 	tween.kill()
 
+func showMaskOutline(duration: float) -> void:
+	var spriteTeen = create_tween()
+	spriteTeen.tween_method(set_shader_value, 0.0, 0.5, duration);
+	spriteTeen.tween_method(set_shader_value, 0.5, 0.0, duration*4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD);
+
+func set_shader_value(value: float):
+	$Sprite2D.material.set_shader_parameter("outline_color", Color(1, 1, 1, value));
+	$Sprite2D.material.set_shader_parameter("inner_alpha", value);
 
 func load_texture_to_tiles() -> void:
 	if !generate_mask_tiles:
