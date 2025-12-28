@@ -83,10 +83,18 @@ func preload_assets() -> void:
 	
 	var masks_container = get_tree().get_nodes_in_group("game_scene")[0].get_node("CanvasLayer/MainMenu").get_node("HBoxContainer/Right/VBoxContainer/MarginContainer/VBoxContainer")
 	for m_idx in range(masks_container.get_children().size()):
-		if m_idx == 0 || m_idx == 4:
+		if m_idx == 0:
 			continue
+		if m_idx == 4:
+			var mui = masks_container.get_child(m_idx)
+			mui.get_node("TextureRect").texture = load("res://assets/masks/melon.png")
+			mui.get_node("MelonCount").show()
+			continue
+		
 		var mui = masks_container.get_child(m_idx)
 		mui.get_node("TextureRect").self_modulate = Color(0.0, 0.0, 0.0, 0.243)
+	
+	
 	
 
 func _ready() -> void:
