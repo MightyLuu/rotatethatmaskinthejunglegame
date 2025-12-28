@@ -7,12 +7,14 @@ const JUMP_FORCE = -320.0
 const JUMP_HOLD_FORCE := -690.0
 const JUMP_HOLD_TIME := 0.69
 const MAX_FALL_SPEED := 600
+const COYOTE_TIME := 0.12
 
 var jump_time := 0.0
 var is_jumping := false
 var active_mask: Mask
 var is_rotating := false
 var facing_right := true
+var coyote_timer := 0.0
 
 func switch_mask(mask: Mask) -> void:
 	active_mask = mask
@@ -44,14 +46,20 @@ func _input(event: InputEvent) -> void:
 		
 
 func start_jump() -> void:
-	if is_on_floor():
+	if is_on_floor() or coyote_timer > 0.0:
 		velocity.y = JUMP_FORCE
 		jump_time = 0.0
 		is_jumping = true
+		coyote_timer = 0.0
 
 func _physics_process(delta):
 	GameManager.write_debug_player_message("Position: \n%s\nVelocity: \n%s\nJumping: \n%s" % [position, velocity, is_jumping])
 	GameManager.write_debug_mask_message("Rotation Degrees: \n%s\nCurrent Mask Index: \n%s" % [active_mask.rotation_degrees, GameManager.current_mask_idx])
+	if is_on_floor():
+		coyote_timer = COYOTE_TIME
+	else:
+		coyote_timer -= delta
+		
 	if not is_on_floor(): velocity.y += delta * GRAVITY
 
 	if Input.is_action_pressed("move_left"):
