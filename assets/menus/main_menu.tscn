@@ -24,14 +24,14 @@
 [sub_resource type="Theme" id="Theme_shqof"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shqof"]
-bg_color = Color(0, 0, 0, 0.5882353)
+bg_color = Color(0.32156864, 0.22352941, 0.09019608, 1)
 
 [sub_resource type="Theme" id="Theme_b06lc"]
 
 [sub_resource type="Theme" id="Theme_30wg0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b06lc"]
-bg_color = Color(0, 0, 0, 0.5882353)
+bg_color = Color(0.32156864, 0.22352941, 0.09019608, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oaiin"]
 bg_color = Color(0.40392157, 0.19215687, 0.105882354, 1)
@@ -123,6 +123,7 @@ theme_override_constants/separation = 4
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+focus_mode = 0
 texture_normal = ExtResource("8_shqof")
 texture_hover = ExtResource("9_b06lc")
 script = ExtResource("4_2qtot")
@@ -144,6 +145,7 @@ theme_override_font_sizes/font_size = 32
 text = "Menu"
 
 [node name="Help" type="VBoxContainer" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/Help"]
@@ -160,6 +162,7 @@ Interact:
 "
 
 [node name="Settings" type="VBoxContainer" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 25
@@ -183,6 +186,7 @@ horizontal_alignment = 2
 
 [node name="HSlider" type="HSlider" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/Settings/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme = SubResource("Theme_30wg0")
 value = 42.0
 
@@ -205,6 +209,7 @@ horizontal_alignment = 2
 
 [node name="HSliderSFX" type="HSlider" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/Settings/VBoxContainerSFX"]
 layout_mode = 2
+focus_mode = 0
 theme = SubResource("Theme_30wg0")
 value = 42.0
 
