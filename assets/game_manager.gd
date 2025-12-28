@@ -60,10 +60,10 @@ func update_melon_count(diff: int) -> void:
 func preload_assets() -> void:
 	allowed_masks = [
 		true,
-		true,
-		true,
-		true,
-		true
+		false,
+		false,
+		false,
+		false
 	]	
 	masks = []
 	for scene in mask_scenes:
@@ -143,6 +143,7 @@ func switch_mask(up: bool) -> void:
 		game_scene.add_child(current_level.active_mask)
 		current_level.active_mask.showMaskOutline(0.2)
 		current_level.set_new_masked_tiles()
+		playSfx("switchMask")
 		highlight_selected_mask()
 		if current_mask_idx == 4:
 			player.set_physics_process(false)
@@ -202,3 +203,13 @@ func write_debug_world_message(message: String) -> void:
 
 
 	
+func playSfx(sfxName: String) -> void:
+	var sfx : AudioStreamPlayer = ui.get_node(sfxName)
+	#duplicate sfx
+	var sfx_dup : AudioStreamPlayer = sfx.duplicate()
+	ui.add_child(sfx_dup)
+	var rand_pitch_offi : float = randf_range(-0.2, 0.2)
+	sfx_dup.pitch_scale += rand_pitch_offi
+	sfx_dup.play()
+	await sfx_dup.finished
+	sfx_dup.queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cv7q051f4kg0j"]
+[gd_scene load_steps=27 format=3 uid="uid://cv7q051f4kg0j"]
 
 [ext_resource type="Script" uid="uid://by4wqf1k85wrk" path="res://assets/menus/main_menu.gd" id="1_o8mnx"]
 [ext_resource type="Theme" uid="uid://by6jw8pw458ma" path="res://assets/menus/main_theme.tres" id="1_x2l61"]
@@ -11,6 +11,12 @@
 [ext_resource type="Texture2D" uid="uid://br0vhwgax1dvw" path="res://assets/masks/melon.png" id="8_30wg0"]
 [ext_resource type="Texture2D" uid="uid://bg883gwo0xto6" path="res://assets/menus/button.png" id="8_shqof"]
 [ext_resource type="Texture2D" uid="uid://d1kug5ooydk7y" path="res://assets/menus/button_hov.png" id="9_b06lc"]
+[ext_resource type="AudioStream" uid="uid://bst0curj115kc" path="res://assets/sfx/029_Decline_09.wav" id="12_667dc"]
+[ext_resource type="AudioStream" uid="uid://corge5fa22cqd" path="res://assets/sfx/88_Teleport_02.wav" id="13_2qtot"]
+[ext_resource type="AudioStream" uid="uid://b1xmk60c1k1v6" path="res://assets/sfx/033_Denied_03.wav" id="14_jjmdn"]
+[ext_resource type="AudioStream" uid="uid://detn7ie3ahfwv" path="res://assets/sfx/46_Poison_01.wav" id="15_cesku"]
+[ext_resource type="AudioStream" uid="uid://xan3u3ouvqhf" path="res://assets/sfx/30_Jump_03.wav" id="16_nr0c5"]
+[ext_resource type="AudioStream" uid="uid://c8g2eajbjbcni" path="res://assets/sfx/35_Miss_Evade_02.wav" id="17_ykdj5"]
 
 [sub_resource type="Theme" id="Theme_x2l61"]
 
@@ -125,7 +131,7 @@ theme = SubResource("Theme_30wg0")
 
 [node name="Label" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Volume:"
+text = "Music Volume:"
 
 [node name="Volume" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -134,6 +140,28 @@ text = "42"
 horizontal_alignment = 2
 
 [node name="HSlider" type="HSlider" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_30wg0")
+value = 42.0
+
+[node name="VBoxContainerSFX" type="VBoxContainer" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainerSFX"]
+layout_mode = 2
+theme = SubResource("Theme_30wg0")
+
+[node name="Label" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainerSFX/HBoxContainer"]
+layout_mode = 2
+text = "Sound Effect Volume:"
+
+[node name="Volume" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainerSFX/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "42"
+horizontal_alignment = 2
+
+[node name="HSliderSFX" type="HSlider" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainerSFX"]
 layout_mode = 2
 theme = SubResource("Theme_30wg0")
 value = 42.0
@@ -341,6 +369,29 @@ text = "Start Game"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ta3oe")
+autoplay = true
+
+[node name="pickupMelon" type="AudioStreamPlayer" parent="." groups=["sfx"]]
+stream = ExtResource("12_667dc")
+
+[node name="pickupMask" type="AudioStreamPlayer" parent="." groups=["sfx"]]
+stream = ExtResource("13_2qtot")
+
+[node name="pickupFail" type="AudioStreamPlayer" parent="." groups=["sfx"]]
+stream = ExtResource("14_jjmdn")
+pitch_scale = 0.8
+
+[node name="spawnMask" type="AudioStreamPlayer" parent="." groups=["sfx"]]
+stream = ExtResource("15_cesku")
+pitch_scale = 0.75
+
+[node name="switchMask" type="AudioStreamPlayer" parent="." groups=["sfx"]]
+stream = ExtResource("16_nr0c5")
+pitch_scale = 0.9
+
+[node name="rotateMask" type="AudioStreamPlayer" parent="." groups=["sfx"]]
+stream = ExtResource("17_ykdj5")
+pitch_scale = 0.8
 
 [node name="Credits" type="PanelContainer" parent="."]
 visible = false
@@ -369,5 +420,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [connection signal="value_changed" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainerSFX/HSliderSFX" to="." method="_on_h_slider_sfx_value_changed"]
 [connection signal="button_up" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/Restart" to="." method="_on_restart_button_up"]
 [connection signal="button_up" from="DemoLevelStart" to="." method="_on_demo_level_start_button_up"]

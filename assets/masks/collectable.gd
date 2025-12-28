@@ -19,21 +19,26 @@ func _ready() -> void:
 
 func _pick_up() -> void:
 	if GameManager.melon_count < cost:
-		#error sound
+		GameManager.playSfx("pickupFail")
 		return
 	GameManager.update_melon_count(-cost)
 
 	if collectible_id == "melon":
 		GameManager.update_melon_count(1)
+		GameManager.playSfx("pickupMelon")
 		set_mask_visibility()
 	elif collectible_id == "mask1":
 		GameManager.allow_mask(1)
+		GameManager.playSfx("pickupMask")
 	elif collectible_id == "mask2":
 		GameManager.allow_mask(2)
+		GameManager.playSfx("pickupMask")
 	elif collectible_id == "mask3":
 		GameManager.allow_mask(3)
+		GameManager.playSfx("pickupMask")
 	elif collectible_id == "winwin":
 		GameManager.allow_mask(4)
+		GameManager.playSfx("pickupMask")
 	queue_free()
 
 func set_mask_visibility() -> void:
@@ -41,12 +46,16 @@ func set_mask_visibility() -> void:
 		if mask.collectible_id == "mask2" && GameManager.total_melons >= 3:
 			mask.get_node("Area2D").monitoring = true
 			mask.visible = true
+			GameManager.playSfx("spawnMask")
 		if mask.collectible_id == "mask3" && GameManager.total_melons >= 6:
 			mask.get_node("Area2D").monitoring = true
 			mask.visible = true
+			GameManager.playSfx("spawnMask")
 		if mask.collectible_id == "winwin" && GameManager.total_melons >= 9:
 			mask.get_node("Area2D").monitoring = true
 			mask.visible = true
+			GameManager.playSfx("spawnMask")
+
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("pick_up") && in_range:

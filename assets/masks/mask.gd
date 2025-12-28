@@ -25,6 +25,7 @@ func _input(event):
 func rotate_mask(left: bool) -> void:
 	var tween = create_tween()
 	showMaskOutline(0.2)
+	GameManager.playSfx("rotateMask")
 	emit_signal("start_mask_rotation", left)
 	if left and not rotating:
 		rotating = true
