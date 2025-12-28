@@ -60,10 +60,10 @@ func update_melon_count(diff: int) -> void:
 func preload_assets() -> void:
 	allowed_masks = [
 		true,
-		false,
-		false,
-		false,
-		false
+		true,
+		true,
+		true,
+		true
 	]	
 	masks = []
 	for scene in mask_scenes:
@@ -141,6 +141,7 @@ func switch_mask(up: bool) -> void:
 		current_mask_idx = next_mask_idx
 		player.switch_mask(current_level.active_mask)
 		game_scene.add_child(current_level.active_mask)
+		current_level.active_mask.showMaskOutline(0.2)
 		current_level.set_new_masked_tiles()
 		highlight_selected_mask()
 		if current_mask_idx == 4:

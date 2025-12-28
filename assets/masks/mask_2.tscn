@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c75ugjt7p76jk"]
+[gd_scene load_steps=7 format=3 uid="uid://c75ugjt7p76jk"]
 
 [ext_resource type="Texture2D" uid="uid://bnvc5neipk28v" path="res://assets/masks/masktiles.png" id="1_ay6lx"]
 [ext_resource type="Script" uid="uid://b5m7udrkfmjpf" path="res://assets/masks/mask.gd" id="2_valk0"]
 [ext_resource type="Material" uid="uid://dmpoyi7xt6es7" path="res://assets/masks/outline.tres" id="3_valk0"]
+[ext_resource type="Texture2D" uid="uid://dgft7wwlo3dgl" path="res://assets/masks/mask2.png" id="4_oeqhc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5bi87"]
 texture = ExtResource("1_ay6lx")
@@ -22,3 +23,5 @@ texturePath = "res://assets/masks/mask2.png"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = ExtResource("3_valk0")
+scale = Vector2(8, 8)
+texture = ExtResource("4_oeqhc")
