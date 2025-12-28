@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=4 uid="uid://crwnp2pelijg3"]
 
 [ext_resource type="TileSet" uid="uid://bkfsabp5yaiot" path="res://assets/levels/tiles.tres" id="1_m10if"]
-[ext_resource type="Texture2D" uid="uid://xwac32kvh0b1" path="res://assets/levels/Melon.png" id="3_ct103"]
 [ext_resource type="Script" uid="uid://cgswkaxkohylp" path="res://assets/levels/masked_tilemap_layer.gd" id="3_m10if"]
+[ext_resource type="Texture2D" uid="uid://br0vhwgax1dvw" path="res://assets/masks/melon.png" id="4_ct103"]
 [ext_resource type="PackedScene" uid="uid://bsg311wxi01yy" path="res://assets/masks/collectable.tscn" id="4_nl2fq"]
 
 [node name="TileMapLayer" type="TileMapLayer"]
@@ -13,5 +13,5 @@ script = ExtResource("3_m10if")
 [node name="CollectableDemo" parent="." instance=ExtResource("4_nl2fq")]
 position = Vector2(-47, -66)
 scale = Vector2(0.36000216, 0.36000216)
-texture = ExtResource("3_ct103")
+texture = ExtResource("4_ct103")
 collectible_id = "Melon"

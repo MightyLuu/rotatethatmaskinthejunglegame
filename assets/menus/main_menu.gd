@@ -27,3 +27,18 @@ func _on_h_slider_value_changed(value: float) -> void:
 	volume_label.text = str(int(value))
 	if value == 0:
 		music.volume_db = -80
+
+
+func _on_restart_button_up() -> void:
+	var world_map = get_tree().get_first_node_in_group("WorldMap")
+	for n in world_map.get_children():
+		n.queue_free()
+		await n.tree_exited
+	var nodes = get_tree().root.get_node("GameScene").get_children()
+	for n in nodes:
+		if n.name == "CanvasLayer" || n.name == "WorldMap":
+			continue
+		n.queue_free()
+		await n.tree_exited
+	GameManager.preload_assets()
+	GameManager.init_game()

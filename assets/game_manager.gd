@@ -11,45 +11,85 @@ var world_map: Node2D
 var lvl_size: int = 704-32
 var mid_coords: Vector2i
 var ui : Control
+var game_time_start: float
 
+var mask_scenes = [
+	preload("res://assets/masks/mask_0.tscn"),
+	preload("res://assets/masks/mask_1.tscn"),
+	preload("res://assets/masks/mask_2.tscn"),
+	preload("res://assets/masks/mask_3.tscn"),
+	preload("res://assets/masks/mask_4.tscn")
+	]
+
+var level_scenes = [
+	preload("res://assets/levels/demo.tscn"),
+	preload("res://assets/levels/lvl_0_1.tscn"),
+	preload("res://assets/levels/lvl_0_2.tscn"),
+	preload("res://assets/levels/lvl_1_0.tscn"),
+	preload("res://assets/levels/lvl_1_1.tscn"),
+	preload("res://assets/levels/lvl_1_2.tscn"),
+	preload("res://assets/levels/lvl_2_0.tscn"),
+	preload("res://assets/levels/lvl_2_1.tscn"),
+	preload("res://assets/levels/lvl_2_2.tscn")
+	]
+	
+var player_scene = preload("res://assets/character/character.tscn")
+
+var total_melons: int = 0
 var melon_count: int = 0
 
-func update_melon_count(diff: int) -> void:
-	melon_count += diff
-	var melon_count_label = ui.get_node("HBoxContainer/Right/VBoxContainer/VBoxContainer/MelonCount")
-	melon_count_label.text = "x %s" % melon_count
+func _input(event: InputEvent) -> void:
+	if event.is_action_released("debug_mode"):
+		update_melon_count(1)
 
-func _ready() -> void:
+func allow_mask(id: int) -> void:
+	var mui = ui.get_node("HBoxContainer/Right/VBoxContainer/MarginContainer/VBoxContainer").get_child(id)		
+	GameManager.allowed_masks[id] = true
+	mui.get_node("TextureRect").self_modulate = Color(1, 1, 1, 1)
+	if id == 4:
+		mui.get_node("TextureRect").texture = load("res://assets/masks/mask4.png")
+		mui.get_node("MelonCount").hide()
+
+func update_melon_count(diff: int) -> void:
+	if diff > 0:
+		total_melons += diff
+	melon_count += diff
+	var melon_count_label = ui.get_node("HBoxContainer/Right/VBoxContainer/MarginContainer/VBoxContainer/Mask4UI/MelonCount")
+	melon_count_label.text = "%s" % melon_count
+
+func preload_assets() -> void:
 	allowed_masks = [
 		true,
 		false,
 		false,
+		false,
 		false
 	]	
-	masks = [
-		preload("res://assets/masks/mask_0.tscn").instantiate(),
-		preload("res://assets/masks/mask_1.tscn").instantiate(),
-		preload("res://assets/masks/mask_2.tscn").instantiate(),
-		preload("res://assets/masks/mask_3.tscn").instantiate()
-	]
-	levels = [
-		preload("res://assets/levels/demo.tscn").instantiate(),
-		preload("res://assets/levels/lvl_0_1.tscn").instantiate(),
-		preload("res://assets/levels/lvl_0_2.tscn").instantiate(),
-		preload("res://assets/levels/lvl_1_0.tscn").instantiate(),
-		preload("res://assets/levels/lvl_1_1.tscn").instantiate(),
-		preload("res://assets/levels/lvl_1_2.tscn").instantiate(),
-		preload("res://assets/levels/lvl_2_0.tscn").instantiate(),
-		preload("res://assets/levels/lvl_2_1.tscn").instantiate(),
-		preload("res://assets/levels/lvl_2_2.tscn").instantiate()
-
-	]
-	player = preload("res://assets/character/character.tscn").instantiate()
+	masks = []
+	for scene in mask_scenes:
+		masks.append(scene.instantiate())
 	
 	# Loading all mask textures because the timing is off when doing it in the mask _ready func
 	for m in masks:
 		m.texture = load(m.texturePath)
 	
+	levels = []
+	for scene in level_scenes:
+		levels.append(scene.instantiate())
+		
+	player = player_scene.instantiate()
+	
+	var masks_container = get_tree().get_nodes_in_group("game_scene")[0].get_node("CanvasLayer/MainMenu").get_node("HBoxContainer/Right/VBoxContainer/MarginContainer/VBoxContainer")
+	for m_idx in range(masks_container.get_children().size()):
+		if m_idx == 0 || m_idx == 4:
+			continue
+		var mui = masks_container.get_child(m_idx)
+		mui.get_node("TextureRect").self_modulate = Color(0.0, 0.0, 0.0, 0.243)
+	
+
+func _ready() -> void:	
+	preload_assets()
+
 func _process(_delta: float) -> void:
 	if current_level:
 		write_debug_world_message("Current Level: \n%s" % [current_level.coords])
@@ -70,11 +110,26 @@ func init_game() -> void:
 	world_map.add_child(current_level)
 	game_scene.add_child(current_level.active_mask)
 	highlight_selected_mask()
+	game_time_start = Time.get_unix_time_from_system()
 	for level in levels:
 		if level != current_level:
 			level.position = game_scene.get_viewport_rect().size / 2 + Vector2(level.coords.x, level.coords.y-2) * lvl_size
 			level.visible = false
 			world_map.add_child(level)
+
+func roll_credits() -> void:
+	var finished_time = Time.get_unix_time_from_system() - game_time_start
+	var credits = ui.get_node("Credits")
+	var credits_label = credits.get_node("Time")
+	
+	var time_dict = Time.get_datetime_dict_from_unix_time(finished_time)
+	var hours = time_dict['hour']
+	var minutes = time_dict['minute']
+	var seconds = time_dict['second']
+	
+	credits_label.text = "%02d:%02d:%02d" % [hours, minutes, seconds]
+	
+	credits.show()
 
 func switch_mask(up: bool) -> void:
 	var next_mask_idx = posmod((current_mask_idx + 1 if up else current_mask_idx - 1), allowed_masks.size())
@@ -87,6 +142,10 @@ func switch_mask(up: bool) -> void:
 		game_scene.add_child(current_level.active_mask)
 		current_level.set_new_masked_tiles()
 		highlight_selected_mask()
+		if current_mask_idx == 4:
+			player.set_physics_process(false)
+			player.set_process(false)
+			roll_credits()
 	else:
 		current_mask_idx = (current_mask_idx + 1 if up else current_mask_idx - 1)
 		switch_mask(up)

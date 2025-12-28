@@ -27,6 +27,8 @@ window/stretch/mode="viewport"
 
 game_scene="main game scene"
 debug_area=""
+mask=""
+WorldMap=""
 
 [input]
 

@@ -8,4 +8,4 @@
 
 [node name="MainMenu" parent="CanvasLayer" instance=ExtResource("1_e8fy0")]
 
-[node name="WorldMap" type="Node2D" parent="."]
+[node name="WorldMap" type="Node2D" parent="." groups=["WorldMap"]]

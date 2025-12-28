@@ -2,10 +2,10 @@
 
 [ext_resource type="TileSet" uid="uid://bkfsabp5yaiot" path="res://assets/levels/tiles.tres" id="1_ujgx3"]
 [ext_resource type="Script" uid="uid://cgswkaxkohylp" path="res://assets/levels/masked_tilemap_layer.gd" id="2_5t6kf"]
-[ext_resource type="Texture2D" uid="uid://xwac32kvh0b1" path="res://assets/levels/Melon.png" id="3_p0ix3"]
 [ext_resource type="Theme" uid="uid://by6jw8pw458ma" path="res://assets/menus/main_theme.tres" id="5_kgg2d"]
 [ext_resource type="Texture2D" uid="uid://dma481jw74gqg" path="res://assets/masks/mask1.png" id="5_udxhd"]
 [ext_resource type="Script" uid="uid://2ljlvq4a5mgv" path="res://assets/masks/collectable.gd" id="5_v32x4"]
+[ext_resource type="Texture2D" uid="uid://br0vhwgax1dvw" path="res://assets/masks/melon.png" id="6_udxhd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udxhd"]
 size = Vector2(96, 96)
@@ -56,7 +56,7 @@ vertical_alignment = 1
 position = Vector2(55.999996, -31.999998)
 scale = Vector2(0.2, 0.2)
 script = ExtResource("5_v32x4")
-texture = ExtResource("3_p0ix3")
+texture = ExtResource("6_udxhd")
 collectible_id = "melon"
 
 [node name="Sprite2D" type="Sprite2D" parent="Collectable2"]

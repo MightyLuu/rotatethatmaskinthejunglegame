@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dxymlucoftw41" path="res://assets/Music/65_loop.ogg" id="4_ta3oe"]
 [ext_resource type="Texture2D" uid="uid://dgft7wwlo3dgl" path="res://assets/masks/mask2.png" id="4_x407y"]
 [ext_resource type="Texture2D" uid="uid://dgvgyuklr8t1q" path="res://assets/masks/mask3.png" id="5_oaiin"]
-[ext_resource type="Texture2D" uid="uid://xwac32kvh0b1" path="res://assets/levels/Melon.png" id="8_30wg0"]
+[ext_resource type="Texture2D" uid="uid://br0vhwgax1dvw" path="res://assets/masks/melon.png" id="8_30wg0"]
 [ext_resource type="Texture2D" uid="uid://bg883gwo0xto6" path="res://assets/menus/button.png" id="8_shqof"]
 [ext_resource type="Texture2D" uid="uid://d1kug5ooydk7y" path="res://assets/menus/button_hov.png" id="9_b06lc"]
 
@@ -104,10 +104,10 @@ size_flags_vertical = 0
 theme = SubResource("Theme_30wg0")
 theme_override_constants/separation = 4
 
-[node name="Menu" type="Button" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer"]
+[node name="Restart" type="Button" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_30wg0")
-text = "Menu
+text = "Restart
 "
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer"]
@@ -283,20 +283,26 @@ theme = SubResource("Theme_30wg0")
 texture = ExtResource("5_oaiin")
 stretch_mode = 5
 
-[node name="VBoxContainer" type="HBoxContainer" parent="HBoxContainer/Right/VBoxContainer"]
+[node name="Mask4UI" type="PanelContainer" parent="HBoxContainer/Right/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_30wg0")
+theme_override_styles/panel = SubResource("StyleBoxFlat_x407y")
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/VBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(100, 100)
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Right/VBoxContainer/MarginContainer/VBoxContainer/Mask4UI"]
+custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
+size_flags_vertical = 3
+theme = SubResource("Theme_30wg0")
 texture = ExtResource("8_30wg0")
-expand_mode = 2
+stretch_mode = 5
 
-[node name="MelonCount" type="Label" parent="HBoxContainer/Right/VBoxContainer/VBoxContainer"]
+[node name="MelonCount" type="Label" parent="HBoxContainer/Right/VBoxContainer/MarginContainer/VBoxContainer/Mask4UI"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 64
-text = "x 0"
+text = "0"
 
 [node name="DemoLevelStart" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(250, 69)
@@ -330,5 +336,32 @@ text = "Start Game"
 stream = ExtResource("4_ta3oe")
 autoplay = true
 
+[node name="Credits" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Credits"]
+layout_mode = 2
+text = "Thanks for playing 
+Rotating Masks in the Jungle Game
+
+Your final Time was
+
+
+A Game by
+WhizzCraft (https://itch.io/profile/whizzcraft)
+Ecsodikas (https://itch.io/profile/ecsodikas)"
+horizontal_alignment = 1
+
+[node name="Time" type="Label" parent="Credits"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[connection signal="button_up" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/Restart" to="." method="_on_restart_button_up"]
 [connection signal="value_changed" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="button_up" from="DemoLevelStart" to="." method="_on_demo_level_start_button_up"]

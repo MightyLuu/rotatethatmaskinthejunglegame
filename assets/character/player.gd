@@ -12,6 +12,7 @@ var jump_time := 0.0
 var is_jumping := false
 var active_mask: Mask
 var is_rotating := false
+var facing_right := true
 
 func switch_mask(mask: Mask) -> void:
 	active_mask = mask
@@ -54,11 +55,18 @@ func _physics_process(delta):
 	if not is_on_floor(): velocity.y += delta * GRAVITY
 
 	if Input.is_action_pressed("move_left"):
+		facing_right = false
 		velocity.x = -WALK_SPEED
 	elif Input.is_action_pressed("move_right"):
+		facing_right = true
 		velocity.x =  WALK_SPEED
 	else:
 		velocity.x = 0
+		
+	if not facing_right:
+		$Sprite2D.flip_h = true
+	else:
+		$Sprite2D.flip_h = false
 	
 	velocity.y = min(velocity.y, MAX_FALL_SPEED)
 	
