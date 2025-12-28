@@ -14,7 +14,7 @@ tile_size = Vector2i(8, 8)
 sources/0 = SubResource("TileSetAtlasSource_5bi87")
 
 [node name="Mask2" type="TileMapLayer"]
-modulate = Color(1, 1, 1, 0.12941177)
+modulate = Color(1, 1, 1, 0.21568628)
 tile_set = SubResource("TileSet_i2qxs")
 script = ExtResource("2_valk0")
 texturePath = "res://assets/masks/mask2.png"

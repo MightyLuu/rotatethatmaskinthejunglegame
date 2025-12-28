@@ -43,7 +43,7 @@ border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x407y"]
-bg_color = Color(0.40308362, 0.19047898, 0.10516886, 1)
+bg_color = Color(0.3764706, 0.1764706, 0.09411765, 0.627451)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -93,44 +93,20 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_shqof")
 layout_mode = 2
 theme = SubResource("Theme_b06lc")
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 40
+theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Left/MarginContainer2"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-size_flags_vertical = 0
 theme = SubResource("Theme_30wg0")
 theme_override_constants/separation = 4
 
-[node name="Restart" type="Button" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer"]
-layout_mode = 2
-theme = SubResource("Theme_30wg0")
-text = "Restart
-"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer"]
-layout_mode = 2
-theme = SubResource("Theme_30wg0")
-
-[node name="Label" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Volume:"
-
-[node name="Volume" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "42"
-horizontal_alignment = 2
-
-[node name="HSlider" type="HSlider" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer"]
-layout_mode = 2
-theme = SubResource("Theme_30wg0")
-value = 42.0
-
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 40
 
 [node name="Label" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -139,6 +115,36 @@ text = "Controls
 [W] [S] - Switch Mask
 [Q] [E] - Rotate Mask
 [F] - Interact"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_30wg0")
+
+[node name="Label" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Volume:"
+
+[node name="Volume" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "42"
+horizontal_alignment = 2
+
+[node name="HSlider" type="HSlider" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_30wg0")
+value = 42.0
+
+[node name="Restart" type="Button" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+focus_mode = 0
+theme = SubResource("Theme_30wg0")
+text = "Restart
+"
 
 [node name="DebugContent" type="VBoxContainer" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer" groups=["debug_area"]]
 visible = false
@@ -207,13 +213,14 @@ theme = SubResource("Theme_30wg0")
 theme_override_styles/panel = SubResource("StyleBoxFlat_b06lc")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Right"]
+visible = false
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Right/VBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_30wg0")
 theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 40
+theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
@@ -334,7 +341,6 @@ text = "Start Game"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ta3oe")
-autoplay = true
 
 [node name="Credits" type="PanelContainer" parent="."]
 visible = false
@@ -362,6 +368,6 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 
-[connection signal="button_up" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/Restart" to="." method="_on_restart_button_up"]
-[connection signal="value_changed" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="button_up" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/Restart" to="." method="_on_restart_button_up"]
 [connection signal="button_up" from="DemoLevelStart" to="." method="_on_demo_level_start_button_up"]

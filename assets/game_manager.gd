@@ -106,6 +106,7 @@ func init_game() -> void:
 	player.position = Vector2(400, 400)
 	mid_coords = game_scene.get_viewport_rect().size / 2
 	current_level.position = mid_coords
+	world_map.position = Vector2i(0, 0)
 	game_scene.add_child(player)
 	world_map.add_child(current_level)
 	game_scene.add_child(current_level.active_mask)

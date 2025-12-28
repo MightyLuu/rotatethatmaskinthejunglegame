@@ -95,4 +95,4 @@ pick_up={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(2.3102762e-06, 0.58925325, 0.8937071, 1)
+environment/defaults/default_clear_color=Color(0.19005883, 0.27479306, 0.43733653, 1)

@@ -18,7 +18,7 @@ sources/0 = SubResource("TileSetAtlasSource_5bi87")
 pattern_0 = SubResource("TileMapPattern_u4fod")
 
 [node name="Mask3" type="TileMapLayer"]
-modulate = Color(1, 1, 1, 0.12941177)
+modulate = Color(1, 1, 1, 0.21568628)
 tile_set = SubResource("TileSet_i2qxs")
 script = ExtResource("2_ou80y")
 texturePath = "res://assets/masks/mask3.png"
