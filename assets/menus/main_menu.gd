@@ -54,6 +54,7 @@ func _on_restart_button_up() -> void:
 
 func _on_button_button_up() -> void:
 	$Credits.hide()
+	$Credits2.hide()
 	reset()
 
 func reset() -> void:
