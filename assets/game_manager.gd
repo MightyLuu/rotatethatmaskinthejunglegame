@@ -119,9 +119,11 @@ func init_game() -> void:
 			world_map.add_child(level)
 
 func roll_credits() -> void:
+	if !ui.get_node("AudioStreamPlayer").playing:
+		ui.get_node("AudioStreamPlayer").play()
 	var finished_time = Time.get_unix_time_from_system() - game_time_start
-	var credits = ui.get_node("Credits")
-	var credits_label = credits.get_node("Time")
+	var credits: PanelContainer = ui.get_node("Credits")
+	var credits_label = credits.get_node("VBoxContainer/Time")
 	
 	var time_dict = Time.get_datetime_dict_from_unix_time(finished_time)
 	var hours = time_dict['hour']
@@ -130,7 +132,17 @@ func roll_credits() -> void:
 	
 	credits_label.text = "%02d:%02d:%02d" % [hours, minutes, seconds]
 	
+	credits.self_modulate.a = 0
+	for child in credits.get_node("VBoxContainer").get_children():
+		child.self_modulate.a = 0
+
 	credits.show()
+	var tween = create_tween()
+	tween.tween_property(credits, "self_modulate:a", 1, 0.4).set_ease(tween.EASE_OUT).set_trans(tween.TRANS_SINE)
+	tween.parallel()
+	for child in credits.get_node("VBoxContainer").get_children():
+		tween.tween_property(child, "self_modulate:a", 1, 1.2).set_ease(tween.EASE_IN).set_trans(tween.TRANS_SINE)
+		tween.parallel()
 
 func switch_mask(up: bool) -> void:
 	var next_mask_idx = posmod((current_mask_idx + 1 if up else current_mask_idx - 1), allowed_masks.size())

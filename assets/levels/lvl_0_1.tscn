@@ -13,6 +13,6 @@ coords = Vector2i(0, 1)
 metadata/_custom_type_script = "uid://cgswkaxkohylp"
 
 [node name="Collectable" parent="." instance=ExtResource("3_mg240")]
-position = Vector2(-44.999996, -67.99999)
+position = Vector2(-47, -65.00001)
 texture = ExtResource("4_mg240")
 collectible_id = "melon"

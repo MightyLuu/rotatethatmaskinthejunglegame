@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cv7q051f4kg0j"]
+[gd_scene load_steps=30 format=3 uid="uid://cv7q051f4kg0j"]
 
 [ext_resource type="Script" uid="uid://by4wqf1k85wrk" path="res://assets/menus/main_menu.gd" id="1_o8mnx"]
 [ext_resource type="Theme" uid="uid://by6jw8pw458ma" path="res://assets/menus/main_theme.tres" id="1_x2l61"]
@@ -55,6 +55,15 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_667dc"]
+bg_color = Color(0, 0, 0, 0.78431374)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qtot"]
+bg_color = Color(0.18000486, 0.1800049, 0.18000478, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjmdn"]
+bg_color = Color(0.24115604, 0.24115607, 0.24115595, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -369,7 +378,6 @@ text = "Start Game"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ta3oe")
-autoplay = true
 
 [node name="pickupMelon" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("12_667dc")
@@ -401,25 +409,56 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_667dc")
 
-[node name="Label" type="Label" parent="Credits"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits"]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="Credits/VBoxContainer"]
 layout_mode = 2
 text = "Thanks for playing 
 Rotating Masks in the Jungle Game
 
-Your final Time was
-
-
-A Game by
-WhizzCraft (https://itch.io/profile/whizzcraft)
-Ecsodikas (https://itch.io/profile/ecsodikas)"
+Your final Time was"
 horizontal_alignment = 1
 
-[node name="Time" type="Label" parent="Credits"]
+[node name="Time" type="Label" parent="Credits/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
+text = "46764767"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Credits/VBoxContainer"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "
+
+A Game by
+WhizzCraft [url]https://itch.io/profile/whizzcraft[/url]
+Ecsodikas [url]https://itch.io/profile/ecsodikas[/url]
+
+
+Assets:
+SFX: [url]https://leohpaz.itch.io/rpg-essentials-sfx-free[/url]
+Music: [url]https://madmakingmistery.itch.io/friendly-jungle-tribe[/url]"
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Credits/VBoxContainer"]
+custom_minimum_size = Vector2(100, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_2qtot")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jjmdn")
+text = "Play again"
 
 [connection signal="value_changed" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainerSFX/HSliderSFX" to="." method="_on_h_slider_sfx_value_changed"]
 [connection signal="button_up" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/Restart" to="." method="_on_restart_button_up"]
 [connection signal="button_up" from="DemoLevelStart" to="." method="_on_demo_level_start_button_up"]
+[connection signal="button_up" from="Credits/VBoxContainer/Button" to="." method="_on_button_button_up"]

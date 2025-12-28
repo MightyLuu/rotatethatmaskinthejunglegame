@@ -50,6 +50,13 @@ func _on_h_slider_sfx_value_changed(value: float) -> void:
 
 
 func _on_restart_button_up() -> void:
+	reset()
+
+func _on_button_button_up() -> void:
+	$Credits.hide()
+	reset()
+
+func reset() -> void:
 	var world_map = get_tree().get_first_node_in_group("WorldMap")
 	for n in world_map.get_children():
 		n.queue_free()
@@ -64,4 +71,6 @@ func _on_restart_button_up() -> void:
 	GameManager.melon_count = 0
 	GameManager.total_melons = 0
 	GameManager.update_melon_count(0)
+	if !get_node("AudioStreamPlayer").playing:
+		get_node("AudioStreamPlayer").play()
 	GameManager.init_game()
