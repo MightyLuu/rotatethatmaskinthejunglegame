@@ -373,7 +373,7 @@ text = "Start Game"
 stream = ExtResource("4_ta3oe")
 volume_db = -10.0
 autoplay = true
-parameters/looping = false
+parameters/looping = true
 
 [node name="pickupMelon" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("12_667dc")
