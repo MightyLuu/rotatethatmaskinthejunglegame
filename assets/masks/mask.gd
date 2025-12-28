@@ -43,7 +43,7 @@ func rotate_mask(left: bool) -> void:
 	tween.kill()
 
 func showMaskOutline(duration: float) -> void:
-	GameManager.shaderRect.tweenAberration(duration/2)
+	GameManager.shaderRect.tweenAberration(duration)
 	var spriteTween = create_tween()
 	spriteTween.tween_method(set_shader_value, 0.0, 0.6, duration);
 	spriteTween.tween_method(set_shader_value, 0.6, 0.0, duration*5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD);

@@ -75,3 +75,6 @@ func reset() -> void:
 		get_node("AudioStreamPlayer").play()
 	GameManager.current_mask_idx = 0
 	GameManager.init_game()
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	GameManager.shaderRect.visible = toggled_on

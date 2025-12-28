@@ -88,7 +88,7 @@ func preload_assets() -> void:
 		mui.get_node("TextureRect").self_modulate = Color(0.0, 0.0, 0.0, 0.243)
 	
 
-func _ready() -> void:	
+func _ready() -> void:
 	preload_assets()
 
 func _process(_delta: float) -> void:
@@ -98,7 +98,6 @@ func _process(_delta: float) -> void:
 func init_game() -> void:
 	game_scene = get_tree().get_nodes_in_group("game_scene")[0]
 	ui = game_scene.get_node("CanvasLayer/MainMenu")
-	shaderRect = game_scene.get_node("ShaderLayer/ColorRect")
 	world_map = game_scene.get_node("WorldMap")
 	current_level = levels[2]
 	current_level.active_mask = masks[current_mask_idx]

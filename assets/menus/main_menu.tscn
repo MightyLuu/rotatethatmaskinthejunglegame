@@ -121,7 +121,7 @@ theme_override_constants/separation = 4
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/separation = 40
+theme_override_constants/separation = 25
 
 [node name="Label" type="Label" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -179,6 +179,11 @@ horizontal_alignment = 2
 layout_mode = 2
 theme = SubResource("Theme_30wg0")
 value = 42.0
+
+[node name="CheckButton" type="CheckButton" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+button_pressed = true
+text = "Shader and Shake"
 
 [node name="Restart" type="Button" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer"]
 visible = false
@@ -383,6 +388,8 @@ text = "Start Game"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ta3oe")
+volume_db = -10.0
+autoplay = true
 
 [node name="pickupMelon" type="AudioStreamPlayer" parent="." groups=["sfx"]]
 stream = ExtResource("12_667dc")
@@ -464,6 +471,7 @@ text = "Play again"
 
 [connection signal="value_changed" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/VBoxContainerSFX/HSliderSFX" to="." method="_on_h_slider_sfx_value_changed"]
+[connection signal="toggled" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="button_up" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/VBoxContainer/Restart" to="." method="_on_restart_button_up"]
 [connection signal="button_up" from="DemoLevelStart" to="." method="_on_demo_level_start_button_up"]
 [connection signal="button_up" from="Credits/VBoxContainer/Button" to="." method="_on_button_button_up"]
