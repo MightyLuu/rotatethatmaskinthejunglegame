@@ -13,6 +13,7 @@ var mid_coords: Vector2i
 var ui : Control
 var game_time_start: float
 var shaderRect: ColorRect
+var game_over: bool = false
 
 var mask_scenes = [
 	preload("res://assets/masks/mask_0.tscn"),
@@ -96,6 +97,7 @@ func _process(_delta: float) -> void:
 		write_debug_world_message("Current Level: \n%s" % [current_level.coords])
 
 func init_game() -> void:
+	game_over = false
 	game_scene = get_tree().get_nodes_in_group("game_scene")[0]
 	ui = game_scene.get_node("CanvasLayer/MainMenu")
 	shaderRect = game_scene.get_node("ShaderLayer/ColorRect")
@@ -121,6 +123,7 @@ func init_game() -> void:
 			world_map.add_child(level)
 
 func roll_credits() -> void:
+	game_over = true
 	if !ui.get_node("AudioStreamPlayer").playing:
 		ui.get_node("AudioStreamPlayer").play()
 	var finished_time = Time.get_unix_time_from_system() - game_time_start
@@ -147,6 +150,8 @@ func roll_credits() -> void:
 		tween.parallel()
 
 func switch_mask(up: bool) -> void:
+	if game_over:
+		return
 	var next_mask_idx = posmod((current_mask_idx + 1 if up else current_mask_idx - 1), allowed_masks.size())
 	if allowed_masks[next_mask_idx]:
 		game_scene.remove_child(current_level.active_mask)
