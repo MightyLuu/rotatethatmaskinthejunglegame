@@ -14,6 +14,7 @@ var ui : Control
 var game_time_start: float
 var shaderRect: ColorRect
 var game_over: bool = false
+var rotations: int = 0
 
 var mask_scenes = [
 	preload("res://assets/masks/mask_0.tscn"),
@@ -86,22 +87,24 @@ func preload_assets() -> void:
 		if m_idx == 0:
 			continue
 		if m_idx == 4:
-			var mui = masks_container.get_child(m_idx)
-			mui.get_node("TextureRect").texture = load("res://assets/masks/melon.png")
-			mui.get_node("MelonCount").show()
+			var m = masks_container.get_child(m_idx)
+			m.get_node("TextureRect").texture = load("res://assets/masks/melon.png")
+			m.get_node("MelonCount").show()
 			continue
 		
 		var mui = masks_container.get_child(m_idx)
 		mui.get_node("TextureRect").self_modulate = Color(0.0, 0.0, 0.0, 0.243)
 	
 	
-	
+func count_rotation() -> void:
+	rotations += 1
 
 func _ready() -> void:
 	preload_assets()
 
 func init_game() -> void:
 	game_over = false
+	rotations = 0
 	game_scene = get_tree().get_nodes_in_group("game_scene")[0]
 	ui = game_scene.get_node("CanvasLayer/MainMenu")
 	world_map = game_scene.get_node("WorldMap")
@@ -149,12 +152,13 @@ func roll_credits() -> void:
 	var finished_time = Time.get_unix_time_from_system() - game_time_start
 	var credits: PanelContainer = ui.get_node("Credits")
 	var credits_label = credits.get_node("VBoxContainer/Time")
+	var rotations_label = credits.get_node("VBoxContainer/Rotations")
+	rotations_label.text = "%d Full Rotations (%s degrees) (%2f radians)" % [rotations / 4.0, rotations * 90, rotations * (PI / 2)]	
 	
 	var time_dict = Time.get_datetime_dict_from_unix_time(finished_time)
 	var hours = time_dict['hour']
 	var minutes = time_dict['minute']
 	var seconds = time_dict['second']
-	
 	credits_label.text = "%02d:%02d:%02d" % [hours, minutes, seconds]
 	
 	credits.self_modulate.a = 0

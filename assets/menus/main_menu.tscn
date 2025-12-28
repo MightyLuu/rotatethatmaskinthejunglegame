@@ -430,6 +430,20 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "46764767"
 
+[node name="Label2" type="RichTextLabel" parent="Credits/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "
+Your Rotation Count was"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Rotations" type="Label" parent="Credits/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+text = "46764767"
+
 [node name="RichTextLabel" type="RichTextLabel" parent="Credits/VBoxContainer"]
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2

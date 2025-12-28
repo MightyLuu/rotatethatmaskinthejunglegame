@@ -25,6 +25,7 @@ func switch_mask(mask: Mask) -> void:
 
 func rotate_mask(left: bool) -> void:
 	var tween = create_tween()
+	GameManager.count_rotation()
 	if left:
 		tween.tween_property($Mask, "rotation_degrees", active_mask.rotation_degrees - 90, 0.2)
 	else:
