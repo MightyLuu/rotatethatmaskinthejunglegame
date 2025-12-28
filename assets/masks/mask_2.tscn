@@ -22,6 +22,7 @@ script = ExtResource("2_valk0")
 texturePath = "res://assets/masks/mask2.png"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.19434929, 0.19434926, 0.19434926, 0.019607844)
 material = ExtResource("3_valk0")
 scale = Vector2(8, 8)
 texture = ExtResource("4_oeqhc")

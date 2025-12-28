@@ -13,8 +13,7 @@ func _ready() -> void:
 	position = get_viewport_rect().size / 2
 	scale = scale * 4
 	load_texture_to_tiles()
-	var sprite : Sprite2D = $Sprite2D	
-	sprite.texture = texture
+
 	
 func _input(event):
 	if event.is_action_pressed("rotate_mask_right"):
@@ -44,8 +43,8 @@ func rotate_mask(left: bool) -> void:
 
 func showMaskOutline(duration: float) -> void:
 	var spriteTeen = create_tween()
-	spriteTeen.tween_method(set_shader_value, 0.0, 0.4, duration);
-	spriteTeen.tween_method(set_shader_value, 0.4, 0.0, duration*5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD);
+	spriteTeen.tween_method(set_shader_value, 0.0, 0.6, duration);
+	spriteTeen.tween_method(set_shader_value, 0.6, 0.0, duration*5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD);
 
 func set_shader_value(value: float):
 	$Sprite2D.material.set_shader_parameter("outline_color", Color(1, 1, 1, value));

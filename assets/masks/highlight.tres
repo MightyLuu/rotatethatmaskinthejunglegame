@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://ciyncb78na3ub"]
+
+[ext_resource type="Shader" uid="uid://i1jxwcysv42w" path="res://assets/masks/highlight.gdshader" id="1_m4h8m"]
+
+[sub_resource type="Gradient" id="Gradient_gburq"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mc5qn"]
+gradient = SubResource("Gradient_gburq")
+
+[sub_resource type="Gradient" id="Gradient_kviki"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.8431839, 0.8431839, 0.84318376, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_75ktp"]
+gradient = SubResource("Gradient_kviki")
+
+[resource]
+shader = ExtResource("1_m4h8m")
+shader_parameter/vertical_gradient = SubResource("GradientTexture1D_75ktp")
+shader_parameter/color_gradient = SubResource("GradientTexture1D_mc5qn")
+shader_parameter/size_effect = 2.0
+shader_parameter/speed = 0.8
+shader_parameter/highlight_strength = 0.5500000678004602
+shader_parameter/color_mode_toggle = false
+shader_parameter/is_horizontal = false
+shader_parameter/pause_duration = 1.5
+shader_parameter/texture_size = Vector2(16, 16)
