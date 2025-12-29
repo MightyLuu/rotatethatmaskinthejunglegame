@@ -64,9 +64,11 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_left"):
 		facing_right = false
 		velocity.x = -WALK_SPEED
+		GameManager.ui.tweenTitles(1)
 	elif Input.is_action_pressed("move_right"):
 		facing_right = true
 		velocity.x =  WALK_SPEED
+		GameManager.ui.tweenTitles(1)
 	else:
 		velocity.x = 0
 		

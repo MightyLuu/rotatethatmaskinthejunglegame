@@ -7,9 +7,9 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l60nl"]
 shader = ExtResource("2_j12hp")
 shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.02000000095
+shader_parameter/scanlines_opacity = 0.0690000032775
 shader_parameter/scanlines_width = 0.25
-shader_parameter/grille_opacity = 0.1250000059375
+shader_parameter/grille_opacity = 0.066000003135
 shader_parameter/resolution = Vector2(640, 480)
 shader_parameter/pixelate = false
 shader_parameter/roll = false
@@ -19,7 +19,7 @@ shader_parameter/roll_variation = 1.8
 shader_parameter/distort_intensity = 0.05
 shader_parameter/noise_opacity = 0.4
 shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.0400000019
+shader_parameter/static_noise_intensity = 0.030000001425
 shader_parameter/aberration = -0.00499995273749998
 shader_parameter/brightness = 1.4
 shader_parameter/discolor = false

@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ct7qd2osmu7gx"]
+
+[ext_resource type="Shader" uid="uid://cbloftqyhab0k" path="res://assets/levels/darken.gdshader" id="1_xcnc8"]
+
+[resource]
+shader = ExtResource("1_xcnc8")
+shader_parameter/dark_strength = 0.5
+shader_parameter/border_size = 0.15

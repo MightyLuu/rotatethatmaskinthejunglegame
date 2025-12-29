@@ -134,16 +134,17 @@ func roll_credits_lose() -> void:
 	game_over = true
 	var credits: PanelContainer = ui.get_node("Credits2")
 	credits.self_modulate.a = 0
-	for child in credits.get_node("VBoxContainer").get_children():
+	for child in credits.get_node("MarginContainer/VBoxContainer").get_children():
 		child.self_modulate.a = 0
 
 	credits.show()
 	var tween = create_tween()
 	tween.tween_property(credits, "self_modulate:a", 1, 0.4).set_ease(tween.EASE_OUT).set_trans(tween.TRANS_SINE)
 	tween.parallel()
-	for child in credits.get_node("VBoxContainer").get_children():
+	for child in credits.get_node("MarginContainer/VBoxContainer").get_children():
 		tween.tween_property(child, "self_modulate:a", 1, 1.2).set_ease(tween.EASE_IN).set_trans(tween.TRANS_SINE)
 		tween.parallel()
+	ui.tweenTitles(0)
 
 func roll_credits() -> void:
 	game_over = true
@@ -151,8 +152,8 @@ func roll_credits() -> void:
 		ui.get_node("AudioStreamPlayer").play()
 	var finished_time = Time.get_unix_time_from_system() - game_time_start
 	var credits: PanelContainer = ui.get_node("Credits")
-	var credits_label = credits.get_node("VBoxContainer/Time")
-	var rotations_label = credits.get_node("VBoxContainer/Rotations")
+	var credits_label = credits.get_node("MarginContainer/VBoxContainer/Time")
+	var rotations_label = credits.get_node("MarginContainer/VBoxContainer/Rotations")
 	rotations_label.text = "%d Full Rotations (%s degrees) (%2f radians)" % [rotations / 4.0, rotations * 90, rotations * (PI / 2)]	
 	
 	var time_dict = Time.get_datetime_dict_from_unix_time(finished_time)
@@ -162,16 +163,17 @@ func roll_credits() -> void:
 	credits_label.text = "%02d:%02d:%02d" % [hours, minutes, seconds]
 	
 	credits.self_modulate.a = 0
-	for child in credits.get_node("VBoxContainer").get_children():
+	for child in credits.get_node("MarginContainer/VBoxContainer").get_children():
 		child.self_modulate.a = 0
 
 	credits.show()
 	var tween = create_tween()
 	tween.tween_property(credits, "self_modulate:a", 1, 0.4).set_ease(tween.EASE_OUT).set_trans(tween.TRANS_SINE)
 	tween.parallel()
-	for child in credits.get_node("VBoxContainer").get_children():
+	for child in credits.get_node("MarginContainer/VBoxContainer").get_children():
 		tween.tween_property(child, "self_modulate:a", 1, 1.2).set_ease(tween.EASE_IN).set_trans(tween.TRANS_SINE)
 		tween.parallel()
+	ui.tweenTitles(0)
 
 func switch_mask(up: bool) -> void:
 	if game_over:

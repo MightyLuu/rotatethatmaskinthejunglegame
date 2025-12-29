@@ -43,15 +43,15 @@ func _pick_up() -> void:
 
 func set_mask_visibility() -> void:
 	for mask in get_tree().get_nodes_in_group("mask"):
-		if mask.collectible_id == "mask2" && GameManager.total_melons >= 3:
+		if mask.collectible_id == "mask2" && GameManager.total_melons == 3:
 			mask.get_node("Area2D").monitoring = true
 			mask.visible = true
 			GameManager.playSfx("spawnMask")
-		if mask.collectible_id == "mask3" && GameManager.total_melons >= 6:
+		if mask.collectible_id == "mask3" && GameManager.total_melons == 6:
 			mask.get_node("Area2D").monitoring = true
 			mask.visible = true
 			GameManager.playSfx("spawnMask")
-		if mask.collectible_id == "winwin" && GameManager.total_melons >= 9:
+		if mask.collectible_id == "winwin" && GameManager.total_melons == 9:
 			mask.get_node("Area2D").monitoring = true
 			mask.visible = true
 			GameManager.playSfx("spawnMask")

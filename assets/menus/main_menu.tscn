@@ -1,11 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://cv7q051f4kg0j"]
+[gd_scene load_steps=29 format=3 uid="uid://cv7q051f4kg0j"]
 
 [ext_resource type="Script" uid="uid://by4wqf1k85wrk" path="res://assets/menus/main_menu.gd" id="1_o8mnx"]
 [ext_resource type="Theme" uid="uid://by6jw8pw458ma" path="res://assets/menus/main_theme.tres" id="1_x2l61"]
 [ext_resource type="Texture2D" uid="uid://dma481jw74gqg" path="res://assets/masks/mask1.png" id="2_cav7f"]
 [ext_resource type="Texture2D" uid="uid://biat3e6eugx14" path="res://assets/menus/mainmenu.png" id="3_b06lc"]
 [ext_resource type="Texture2D" uid="uid://cxxe4vkxgfa7d" path="res://assets/masks/mask0.png" id="3_oaiin"]
-[ext_resource type="Script" uid="uid://lqxyow7vsnx1" path="res://assets/menus/settings_button.gd" id="4_2qtot"]
+[ext_resource type="Script" path="res://assets/menus/settings_button.gd" id="4_2qtot"]
 [ext_resource type="AudioStream" uid="uid://dxymlucoftw41" path="res://assets/Music/65_loop.ogg" id="4_ta3oe"]
 [ext_resource type="Texture2D" uid="uid://dgft7wwlo3dgl" path="res://assets/masks/mask2.png" id="4_x407y"]
 [ext_resource type="Texture2D" uid="uid://dgvgyuklr8t1q" path="res://assets/masks/mask3.png" id="5_oaiin"]
@@ -59,12 +59,6 @@ border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_667dc"]
 bg_color = Color(0, 0, 0, 0.78431374)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2qtot"]
-bg_color = Color(0.18000486, 0.1800049, 0.18000478, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjmdn"]
-bg_color = Color(0.24115604, 0.24115607, 0.24115595, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -217,7 +211,7 @@ value = 42.0
 layout_mode = 2
 focus_mode = 0
 button_pressed = true
-text = "Cool Mode"
+text = "Cool Shader Mode"
 
 [node name="Restart" type="Button" parent="HBoxContainer/Left/MarginContainer2/VBoxContainer/Settings"]
 visible = false
@@ -407,30 +401,34 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_667dc")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Credits"]
+[node name="MarginContainer" type="MarginContainer" parent="Credits"]
+layout_mode = 2
+theme_override_constants/margin_top = 120
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Label" type="RichTextLabel" parent="Credits/VBoxContainer"]
+[node name="Label" type="RichTextLabel" parent="Credits/MarginContainer/VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
-text = "Thanks for playing 
-Rotating Masks in the Jungle Game
+text = "Congratulations
 
-You are now the [color=#FF0000]M[/color][color=#F20C02]e[/color][color=#E51905]l[/color][color=#D82607]o[/color][color=#CC330A]n[/color][color=#BF3F0C]e[/color][color=#B24C0F]n[/color][color=#A55911]m[/color][color=#996614]a[/color][color=#8C7216]s[/color][color=#7F7F19]k[/color][color=#728C1C]e[/color][color=#66991E]n[/color][color=#59A521]m[/color][color=#4CB223]e[/color][color=#3FBF26]i[/color][color=#33CC28]s[/color][color=#26D82B]t[/color][color=#19E52D]e[/color][color=#0CF230]r[/color]!
+You are now the
+[color=#FF0000]M[/color][color=#F20C02]e[/color][color=#E51905]l[/color][color=#D82607]o[/color][color=#CC330A]n[/color][color=#BF3F0C]e[/color][color=#B24C0F]n[/color][color=#A55911]m[/color][color=#996614]a[/color][color=#8C7216]s[/color][color=#7F7F19]k[/color][color=#728C1C]e[/color][color=#66991E]n[/color][color=#59A521]m[/color][color=#4CB223]e[/color][color=#3FBF26]i[/color][color=#33CC28]s[/color][color=#26D82B]t[/color][color=#19E52D]e[/color][color=#0CF230]r[/color]!
 
 Your final Time was"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="Time" type="Label" parent="Credits/VBoxContainer"]
+[node name="Time" type="Label" parent="Credits/MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 text = "46764767"
 
-[node name="Label2" type="RichTextLabel" parent="Credits/VBoxContainer"]
+[node name="Label2" type="RichTextLabel" parent="Credits/MarginContainer/VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "
@@ -438,13 +436,13 @@ Your Rotation Count was"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="Rotations" type="Label" parent="Credits/VBoxContainer"]
+[node name="Rotations" type="Label" parent="Credits/MarginContainer/VBoxContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 text = "46764767"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Credits/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Credits/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 size_flags_vertical = 3
@@ -462,14 +460,26 @@ Music: [url]https://madmakingmistery.itch.io/friendly-jungle-tribe[/url]"
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Credits/VBoxContainer"]
-custom_minimum_size = Vector2(100, 16)
+[node name="Button" type="TextureButton" parent="Credits/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(160, 16)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_2qtot")
-theme_override_styles/hover = SubResource("StyleBoxFlat_jjmdn")
+texture_normal = ExtResource("8_shqof")
+texture_hover = ExtResource("9_b06lc")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Credits/MarginContainer/VBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
 text = "Play again"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Credits2" type="PanelContainer" parent="."]
 visible = false
@@ -481,12 +491,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_667dc")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Credits2"]
+[node name="MarginContainer" type="MarginContainer" parent="Credits2"]
+layout_mode = 2
+theme_override_constants/margin_top = 170
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits2/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Label" type="RichTextLabel" parent="Credits2/VBoxContainer"]
+[node name="Label" type="RichTextLabel" parent="Credits2/MarginContainer/VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "It seems you dropped out of the map. What a shame.
@@ -497,7 +511,7 @@ You will never become the [color=#FF0000]M[/color][color=#F20C02]e[/color][color
 fit_content = true
 horizontal_alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Credits2/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Credits2/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 160)
 layout_mode = 2
 size_flags_vertical = 3
@@ -515,14 +529,62 @@ Music: [url]https://madmakingmistery.itch.io/friendly-jungle-tribe[/url]"
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Credits2/VBoxContainer"]
-custom_minimum_size = Vector2(100, 16)
+[node name="Button" type="TextureButton" parent="Credits2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(160, 16)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_2qtot")
-theme_override_styles/hover = SubResource("StyleBoxFlat_jjmdn")
+texture_normal = ExtResource("8_shqof")
+texture_hover = ExtResource("9_b06lc")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Credits2/MarginContainer/VBoxContainer/Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 32
 text = "Play again"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title1" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 286.0
+offset_top = 73.99999
+offset_right = 878.391
+offset_bottom = 211.8211
+rotation = -0.1161323
+texture = ExtResource("8_shqof")
+
+[node name="Label" type="Label" parent="Title1"]
+layout_mode = 0
+offset_left = 67.04561
+offset_top = 38.024803
+offset_right = 835.0456
+offset_bottom = 89.02481
+theme_override_font_sizes/font_size = 64
+text = "Rotating Masks in the"
+
+[node name="Title2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 637.0
+offset_top = 171.0
+offset_right = 1038.0554
+offset_bottom = 273.61798
+rotation = 0.13709006
+texture = ExtResource("8_shqof")
+
+[node name="Label" type="Label" parent="Title2"]
+layout_mode = 0
+offset_left = 64.5275
+offset_top = 21.382215
+offset_right = 832.52747
+offset_bottom = 72.38222
+theme_override_font_sizes/font_size = 64
+text = "Jungle Game"
 
 [connection signal="button_up" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/TextureButton" to="HBoxContainer/Left/MarginContainer2/VBoxContainer/TextureButton" method="_on_button_up"]
 [connection signal="value_changed" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/Settings/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
@@ -530,5 +592,5 @@ text = "Play again"
 [connection signal="toggled" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/Settings/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="button_up" from="HBoxContainer/Left/MarginContainer2/VBoxContainer/Settings/Restart" to="." method="_on_restart_button_up"]
 [connection signal="button_up" from="DemoLevelStart" to="." method="_on_demo_level_start_button_up"]
-[connection signal="button_up" from="Credits/VBoxContainer/Button" to="." method="_on_button_button_up"]
-[connection signal="button_up" from="Credits2/VBoxContainer/Button" to="." method="_on_button_button_up"]
+[connection signal="button_up" from="Credits/MarginContainer/VBoxContainer/Button" to="." method="_on_button_button_up"]
+[connection signal="button_up" from="Credits2/MarginContainer/VBoxContainer/Button" to="." method="_on_button_button_up"]

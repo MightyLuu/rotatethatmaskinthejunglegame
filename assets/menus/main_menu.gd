@@ -5,6 +5,8 @@ var start_volume : float = 42.0
 var music : AudioStreamPlayer
 var debug_mode : bool = true
 
+const titleYpos : Vector2 = Vector2(74, 171)
+
 func _ready() -> void:
 	music = $AudioStreamPlayer
 	music.volume_db = -40+start_volume/2
@@ -76,6 +78,13 @@ func reset() -> void:
 		get_node("AudioStreamPlayer").play()
 	GameManager.current_mask_idx = 0
 	GameManager.init_game()
+
+func tweenTitles(direction:int) -> void:
+	var tween = create_tween()
+	tween.tween_property($Title1, "position:y", titleYpos.x-(550*direction), 1.5).set_ease(tween.EASE_IN_OUT).set_trans(tween.TRANS_BACK)
+	tween.parallel()
+	tween.tween_property($Title2, "position:y", titleYpos.y-(550*direction), 1.5).set_ease(tween.EASE_IN_OUT).set_trans(tween.TRANS_BACK)
+	tween.parallel()
 
 func _on_check_button_toggled(toggled_on: bool) -> void:
 	GameManager.shaderRect.visible = toggled_on
